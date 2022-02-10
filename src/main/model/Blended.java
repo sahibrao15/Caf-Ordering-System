@@ -20,11 +20,11 @@ public class Blended implements Drink {
     }
 
 
-    public void changeMilk(String milk) {
+    public void addMilk(String milk) {
 
     }
 
-    @Override
+
     public void addSugar(int sugar) {
 
     }

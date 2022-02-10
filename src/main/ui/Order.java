@@ -21,11 +21,14 @@ public class Order {
     }
 
     public void welcomeMessage() {
-        System.out.println("\033[1m");
+        System.out.println("\033[3m");
         System.out.println("Welcome to your very own virtual café!");
+        System.out.println("\nPlease note that all requests must be typed in \033[1mlowercase\033[0m lettres!");
         System.out.println();
         System.out.print("First, order up to as many drinks as you want,");
-        System.out.println(" then customize up to as many as you want!\033[0m");
+        System.out.println(" then customize up to as many as you want!");
+        System.out.println("\nFor the launch of this café, we are giving u a 10% chance to get 50% off your entire ");
+        System.out.println("order!!!\033[0m");
     }
 
     public void orderDrink() {
@@ -47,7 +50,7 @@ public class Order {
     }
 
     public void customizeOrNo() {
-        System.out.println("\n\033[1mWould you like to customize any of your drinks?\033[0m");
+        System.out.println("\nWould you like to customize any of your drinks?");
         Scanner customize = new Scanner(System.in);
         String customDrink = customize.nextLine();
 
@@ -58,7 +61,7 @@ public class Order {
 
             customizeToppings(orderList.get(numDrink - 1));
             changeMilk(orderList.get(numDrink - 1));
-            addSugar(orderList.get(numDrink - 1));
+            changeSugar(orderList.get(numDrink - 1));
 
             System.out.println("\n\033[1mWould you would like to customize any more?\033[0m");
             Scanner answer1 = new Scanner(System.in);
@@ -103,11 +106,11 @@ public class Order {
             System.out.println("We have the option of oat, soy or almond milk, which would you like");
             Scanner milk = new Scanner(System.in);
             String milkChangeTo = milk.nextLine();
-            d.changeMilk(milkChangeTo); ///?????
+            d.addMilk(milkChangeTo); ///?????
         }
     }
 
-    public void addSugar(Drink d) {
+    public void changeSugar(Drink d) {
         System.out.println("How many sugars would you like to add, for no additional charge");
         Scanner sugar = new Scanner(System.in);
         int sugarNumber = sugar.nextInt();
@@ -184,22 +187,33 @@ public class Order {
         }
         System.out.println("\nHere is the list of drinks:");
         for (Drink d : orderList) {
-            System.out.println(d.getNameDrink());
+            System.out.println("-" + d.getNameDrink() + " = $" + String.format("%.2f", d.getPrice()));
         }
-        System.out.print("\n\033[1mYour total is $");
-        System.out.print(String.format("%.2f", (totalPrice() * 1.12)) + " with tax.\033[0m");
-        System.out.println();
+        int min = 1;
+        int max = 10;
+        if ((int) Math.floor(Math.random() * (max - min + 1) + min) == 1) {
+            System.out.print("\n\033[1mYour total is $");
+            System.out.println(String.format("%.2f", (totalPrice() * 0.56)) + " with tax.\033[0m");
+            System.out.println("Congratulations, you have won the 50% discount off of your order! ");
+
+        } else {
+            System.out.print("\n\033[1mYour total is $");
+            System.out.println(String.format("%.2f", (totalPrice() * 1.12)) + " with tax.\033[0m");
+            System.out.println("Unfortunately you didn't win the 50% discount this time!");
+        }
+
         System.out.println("We hope you have a great day and come again!");
 
     }
 
     public void addToList(Drink d) {
         orderList.add(d);
-
     }
 
     public double totalPrice() {
         double allPrice = 0.0;
+        int min = 1;
+        int max = 10;
         for (Drink d : orderList) {
             allPrice += d.getPrice();
         }

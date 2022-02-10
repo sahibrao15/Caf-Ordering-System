@@ -3,41 +3,29 @@ package model;
 public class Latte extends Espresso {
 
     private double lattePrice;
-    //private boolean foam;
     private String name;
 
-
+    // constructor
     public Latte(String size) {
-
-        // this.foam = true;
         if (size.equals("small")) {
-            lattePrice = 4.00;
-            name = "A small latte ";
-        } else if (size.equals("medium")) {
             lattePrice = 3.00;
-            name = "A medium latte ";
+            name = "The small latte";
+        } else if (size.equals("medium")) {
+            lattePrice = 4.00;
+            name = "The medium latte";
         } else {
             lattePrice = 5.00;
-            name = "A large latte ";
+            name = "The large latte";
         }
     }
 
-    // public void changeFoam() {this.foam = !foam;}
-
-    public double getPrice() {
-        return lattePrice;
-    }
-    @Override
-    public String getNameDrink() {
-        return name;
-    }
-
+    //all toppings
     public void changeToppings(String x, String y, String z) {
         if (x.equals("yes")) {
-            name += "with whip cream";
+            name += " with whip cream";
             lattePrice += 0.10;
         } else {
-            name += "without whip cream";
+            name += " without whip cream";
 
         }
         if (y.equals("yes")) {
@@ -54,13 +42,26 @@ public class Latte extends Espresso {
         }
     }
 
-    public boolean isLatte() {
-        return true;
+    public void addMilk(String milk) {
+        name += ", made with " + milk + " milk";
+
     }
 
-    public boolean isAmericano() {
-        return false;
+    public void addSugar(int sugar) {
+        if (sugar > 1) {
+            name += " and " + sugar + " packets of sugar";
+        } else if (sugar == 1) {
+            name += " and " + 1 + " packet of sugar";
+        }
     }
 
+    //getters
+    public double getPrice() {
+        return lattePrice;
+    }
+
+    public String getNameDrink() {
+        return name;
+    }
 
 }

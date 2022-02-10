@@ -11,23 +11,24 @@ public class Smoothie extends Blended {
 
     public Smoothie(String size) {
         if (size.equals("small")) {
-            smoothiePrice = 4.50;
-            name = "A small smoothie ";
+            smoothiePrice = 3.45;
+            name = "The small smoothie";
         } else if (size.equals("medium")) {
-            smoothiePrice = 3.50;
-            name = "A small smoothie ";
+            smoothiePrice = 3.90;
+            name = "The medium smoothie";
         } else {
-            smoothiePrice = 5.50;
-            name = "A small smoothie ";
+            smoothiePrice = 5.10;
+            name = "The large smoothie";
         }
 
     }
+
     public void changeToppings(String x, String y, String z) {
         if (x.equals("yes")) {
-            name += "with whip cream";
+            name += " with whip cream";
             smoothiePrice += 0.10;
         } else {
-            name += "without whip cream";
+            name += " without whip cream";
 
         }
         if (y.equals("yes")) {
@@ -47,6 +48,18 @@ public class Smoothie extends Blended {
     @Override
     public String getNameDrink() {
         return name;
+    }
+
+    public void addMilk(String milk) {
+        name += ", with a hint of " + milk + " milk";
+    }
+
+    public void addSugar(int sugar) {
+        if (sugar > 1) {
+            name += " and " + sugar + " packets of sugar";
+        } else if (sugar == 1) {
+            name += " and " + 1 + " packet of sugar";
+        }
     }
 
 }

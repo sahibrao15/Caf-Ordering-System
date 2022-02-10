@@ -8,24 +8,24 @@ public class CoffeeFrap extends Blended {
 
     public CoffeeFrap(String size) {
         if (size.equals("small")) {
-            frapPrice = 4.50;
-            name = "A small coffee frap ";
-        } else if (size.equals("medium")) {
             frapPrice = 3.50;
-            name = "A medium coffee frap ";
+            name = "The small coffee frap";
+        } else if (size.equals("medium")) {
+            frapPrice = 4.50;
+            name = "The medium coffee frap";
         } else {
             frapPrice = 5.50;
-            name = "A large coffee frap ";
+            name = "The large coffee frap";
         }
 
     }
+
     public void changeToppings(String x, String y, String z) {
         if (x.equals("yes")) {
-            name += "with whip cream";
+            name += " with whip cream";
             frapPrice += 0.10;
         } else {
-            name += "without whip cream";
-
+            name += " without whip cream";
         }
         if (y.equals("yes")) {
             name += ", with cinnamon powder";
@@ -41,12 +41,25 @@ public class CoffeeFrap extends Blended {
         }
     }
 
-    @Override
+
+    public void addMilk(String milk) {
+        name += ", using " + milk + " milk";
+    }
+
+    public void addSugar(int sugar) {
+        if (sugar > 1) {
+            name += " and " + sugar + " packets of sugar";
+        } else if (sugar == 1) {
+            name += " and " + 1 + " packet of sugar";
+        }
+    }
+
+    // getters
     public double getPrice() {
         return this.frapPrice;
     }
 
-    @Override
+
     public String getNameDrink() {
         return name;
     }

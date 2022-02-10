@@ -20,12 +20,13 @@ public class Espresso implements Drink {
     }
 
 
-    public void changeMilk(String milk) {
+    public void addMilk(String milk) {
 
     }
 
 
     public void addSugar(int sugarNumber) {
+
 
     }
 

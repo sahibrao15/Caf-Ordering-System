@@ -4,7 +4,7 @@
 
 
 This personal café is an application that allows a user to place a coffee order as they would in a regular coffee shop
-but instead virtually. This coffee order could contain up to multiple customizable drinks, such as changing the temperature,
+but instead virtually. This coffee order could contain up to multiple customizable drinks, such as changing the
 sugar, toppings and the milk that it comes with. 
 This application would not only allow coffee shops to spend their hard-earned money elsewhere, such
 as towards improving their equipment to enhance coffee quality or to appeal to more customers through renovation, but it

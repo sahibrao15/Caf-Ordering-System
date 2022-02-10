@@ -6,7 +6,7 @@ public interface Drink {
 
     void changeToppings(String x, String y, String z);
 
-    void changeMilk(String milk);
+    void addMilk(String milk);
 
     void addSugar(int sugar);
 
