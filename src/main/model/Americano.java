@@ -1,5 +1,6 @@
 package model;
 
+// a class representing an Americano that is extending espresso's methods that are implemented in Drink
 public class Americano extends Espresso {
 
     private double americanoPrice;

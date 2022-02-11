@@ -1,5 +1,6 @@
 package model;
 
+// a class representing an Smoothie that is extending blended's methods that are implemented in Drink
 public class Smoothie extends Blended {
 
     private double smoothiePrice;

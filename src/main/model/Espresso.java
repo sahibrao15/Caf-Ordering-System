@@ -1,7 +1,7 @@
 package model;
 
+// an abstract class that represents all Espresso drinks
 public abstract class Espresso implements Drink {
-
 
     // being overridden by subclasses
     public abstract double getPrice();

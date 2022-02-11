@@ -1,5 +1,6 @@
 package model;
 
+// an interface for Espresso class and Blended drinks
 public interface Drink {
 
     // being overridden by subclasses

@@ -5,7 +5,7 @@ import model.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+// a Order class to keep track of the order, having an Arraylist of Drinks at all time
 public class Order {
 
     ArrayList<Drink> orderList;

@@ -1,5 +1,6 @@
 package model;
 
+// a class representing an Coffee Frap that is extending blended's methods that are implemented in Drink
 public class CoffeeFrap extends Blended {
 
     private double frapPrice;

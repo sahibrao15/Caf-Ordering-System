@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// test cases for the Latte Class
 public class LatteTest {
 
     private Drink drink1;

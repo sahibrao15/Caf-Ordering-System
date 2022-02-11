@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// test cases for the Americano Class
 public class AmericanoTest {
     private Drink drink1;
     private Drink drink2;
