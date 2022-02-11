@@ -3,60 +3,75 @@ package model;
 public class Americano extends Espresso {
 
     private double americanoPrice;
-    private String name;
+    private String nameToCall;
 
+    // REQUIRES: a string size of "small", "medium" or "large"
+    // EFFECTS:  based on the size, americanoPrice will be the correct price of the americano,
+    //           and the nameToCall will contain the right size of the americano
     public Americano(String size) {
         if (size.equals("small")) {
             americanoPrice = 2.85;
-            name = "The small americano";
+            nameToCall = "The small americano";
         } else if (size.equals("medium")) {
             americanoPrice = 3.00;
-            name = "The medium americano";
+            nameToCall = "The medium americano";
         } else {
             americanoPrice = 4.00;
-            name = "The large americano";
+            nameToCall = "The large americano";
         }
     }
 
+    // REQUIRES: Strings of whipCream, cinnamon and caramel to be either "yes" or "no"
+    // MODIFIES: this
+    // EFFECTS:  adds 0.10 to americanoPrice for each "yes" of toppings and makes the correct
+    //           adjustments to nameToCall
     public void changeToppings(String x, String y, String z) {
         if (x.equals("yes")) {
-            name += " with whip cream";
+            nameToCall += " with whip cream";
             americanoPrice += 0.10;
         } else {
-            name += " without whip cream";
+            nameToCall += " without whip cream";
         }
         if (y.equals("yes")) {
-            name += ", with cinnamon powder";
+            nameToCall += ", with cinnamon powder";
             americanoPrice += 0.10;
         } else {
-            name += ", without cinnamon powder";
+            nameToCall += ", without cinnamon powder";
         }
         if (z.equals("yes")) {
-            name += " and with caramel drizzle";
+            nameToCall += " and with caramel drizzle";
             americanoPrice += 0.10;
         } else {
-            name += " and without caramel drizzle";
+            nameToCall += " and without caramel drizzle";
         }
     }
 
+    // REQUIRES: Strings of milk to be a type of milk, such as "oat" or "almond"
+    // MODIFIES: this
+    // EFFECTS:  no charge for milk added and makes the correct
+    //           adjustments to nameToCall
     public void addMilk(String milk) {
-        name += ", with " + milk + " milk on top";
-
+        nameToCall += ", with " + milk + " milk on top";
     }
 
+    // REQUIRES: sugar >= 0
+    // MODIFIES: this
+    // EFFECTS:  makes the correct adjustments to nameToCall depending on number of sugars
+    //           if 0, no change, if above one, packets with an s is added to nameToCall instead of no s if sugar==1
     public void addSugar(int sugar) {
         if (sugar > 1) {
-            name += " and " + sugar + " packets of sugar";
+            nameToCall += " and " + sugar + " packets of sugar";
         } else if (sugar == 1) {
-            name += " and " + 1 + " packet of sugar";
+            nameToCall += " and " + 1 + " packet of sugar";
         }
     }
 
-    //getters
+    //getter for nameToCall
     public String getNameDrink() {
-        return name;
+        return nameToCall;
     }
 
+    //getter for americanoPrice
     public double getPrice() {
         return americanoPrice;
     }

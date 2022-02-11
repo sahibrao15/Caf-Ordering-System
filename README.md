@@ -27,7 +27,7 @@ their full effort into providing the best quality of food and beverages.
 
 - As a user, I would like to know the price of each good as well as my total order price
 
-- As a user, I would like to be automatically applied for coupons or discounts 
+- As a user, I would like to be automatically applied for discounts (ex. 10% chance of half price off your order)
 
 
 

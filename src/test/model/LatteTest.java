@@ -57,8 +57,10 @@ public class LatteTest {
     void testAddMilk() {
         drink1.addMilk("oat");
         assertEquals("The small latte, made with oat milk", drink1.getNameDrink());
+        assertEquals(3.00 + 0.30, drink1.getPrice());
         drink2.addMilk("almond");
         assertEquals("The medium latte, made with almond milk", drink2.getNameDrink());
+        assertEquals(4.00 + 0.30, drink2.getPrice());
     }
 
     @Test
