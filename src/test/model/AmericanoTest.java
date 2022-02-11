@@ -9,14 +9,14 @@ public class AmericanoTest {
     private Drink drink1;
     private Drink drink2;
     private Drink drink3;
-    private Drink drink4;
+
 
     @BeforeEach
     void runBefore() {
         drink1 = new Americano("small");
         drink2 = new Americano("medium");
         drink3 = new Americano("large");
-        drink4 = new Americano("small");
+
     }
 
     @Test
@@ -53,18 +53,6 @@ public class AmericanoTest {
         nameOfDrink3 = "The large americano without whip cream, without cinnamon powder and without caramel drizzle";
         assertEquals(nameOfDrink3, drink3.getNameDrink());
 
-        drink4.changeToppings("no", "yes", "yes");
-        assertEquals(4.00 + 0.1 + 0,1, drink3.getPrice());
-        String nameOfDrink4;
-        nameOfDrink4 = "The small americano without whip cream, with cinnamon powder and with caramel drizzle";
-        assertEquals(nameOfDrink4, drink4.getNameDrink());
-
-        drink3.changeToppings("no", "no", "no");
-        assertEquals(4.00, drink3.getPrice());
-        String drink3Part2;
-        drink3Part2 = "The large americano without whip cream, without cinnamon powder and without caramel drizzle";
-        drink3Part2 += " without whip cream, without cinnamon powder and without caramel drizzle";
-        assertEquals(drink3Part2, drink3.getNameDrink());
 
 
     }

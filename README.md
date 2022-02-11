@@ -25,6 +25,8 @@ their full effort into providing the best quality of food and beverages.
   
 - As a user, I want to be able to add multiple beverage items onto my order
 
+- As a user, I want to be able to get rid of any drinks I don't want before I checkout
+
 - As a user, I would like to know the price of each good as well as my total order price
 
 - As a user, I would like to be automatically applied for discounts (ex. 10% chance of half price off your order)

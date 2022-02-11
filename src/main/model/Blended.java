@@ -4,29 +4,17 @@ public abstract class Blended implements Drink {
 
 
     // being overridden by subclasses
-    public double getPrice() {
-        return 0.0;
-    }
+    public abstract double getPrice();
 
     // being overridden by subclasses
-    public String getNameDrink() {
-
-        return "";
-    }
+    public abstract String getNameDrink();
 
     // being overridden by subclasses
-    public void changeToppings(String x, String y, String z) {
-
-    }
+    public abstract void changeToppings(String x, String y, String z);
 
     // being overridden by subclasses
-    public void addMilk(String milk) {
-
-    }
+    public abstract void addMilk(String milk);
 
     // being overridden by subclasses
-    public void addSugar(int sugar) {
-
-    }
-
+    public abstract void addSugar(int sugar);
 }

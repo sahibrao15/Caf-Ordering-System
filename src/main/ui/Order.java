@@ -20,6 +20,8 @@ public class Order {
         welcomeMessage();
         orderTypeDrink();
         customizeOrNo();
+        printListOfDrinks();
+        removeDrink();
         endingMessage();
     }
 
@@ -212,28 +214,16 @@ public class Order {
     }
 
     // MODIFIES: this
-    // EFFECTS: Gives the ending message, such as drinks ordered, with all the names and prices,
-    //          as well as the total price and adding the discount if they got it or not
+    // EFFECTS: Gives the ending message with total price and adding the discount if they got it or not
 
     public void endingMessage() {
-        System.out.println();
-        for (int i = 1; i <= orderList.size(); i++) {
-            System.out.println("--beep--");
-
-        }
-        System.out.println("\nHere is the list of drinks:");
-        for (Drink d : orderList) {
-            System.out.println("-" + d.getNameDrink() + " = $" + String.format("%.2f", d.getPrice()));
-        }
         int min = 1;
         int max = 10;
         int random = (int) Math.floor(Math.random() * (max - min + 1) + min);
-        System.out.println(random);
         if (random == 2) {
             System.out.print("\n\033[1mYour total is $");
             System.out.println(String.format("%.2f", (totalPrice() * 0.56)) + " with tax.\033[0m");
             System.out.println("Congratulations, you have won the 50% discount off of your order! ");
-
         } else {
             System.out.print("\n\033[1mYour total is $");
             System.out.println(String.format("%.2f", (totalPrice() * 1.12)) + " with tax.\033[0m");
@@ -241,6 +231,32 @@ public class Order {
         }
 
         System.out.println("We hope you have a great day and come again!");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: lists out all the names of the drinks, as well as the adjustments and the price at the dn
+    public void printListOfDrinks() {
+        System.out.println();
+        for (int i = 1; i <= orderList.size(); i++) {
+            System.out.println("--beep--");
+        }
+        System.out.println("\nHere is the list of drinks:");
+        for (Drink d : orderList) {
+            System.out.println("-" + d.getNameDrink() + " = $" + String.format("%.2f", d.getPrice()));
+        }
+    }
+
+    public void removeDrink() {
+        System.out.println("\nWould you like to take out any drinks?");
+        Scanner yesOrNo = new Scanner(System.in);
+        String answer = yesOrNo.nextLine();
+        if (answer.equals("yes")) {
+            System.out.println("\nWhich numbered drink would you like to get rid of?");
+            Scanner number = new Scanner(System.in);
+            int takeOut = number.nextInt();
+            System.out.println(orderList.get(takeOut - 1).getNameDrink() + " has been removed");
+            orderList.remove(takeOut - 1);
+        }
     }
 
     // MODIFIES: this, orderList

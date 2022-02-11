@@ -4,22 +4,15 @@ public abstract class Espresso implements Drink {
 
 
     // being overridden by subclasses
-    public double getPrice() {
-        return 0.0;
-    }
+    public abstract double getPrice();
 
     // being overridden by subclasses
-    public String getNameDrink() {
-        return "";
-    }
+    public abstract String getNameDrink();
+    // being overridden by subclasses
+    public abstract void changeToppings(String x, String y, String z);
+    // being overridden by subclasses
+    public abstract void addMilk(String milk);
 
     // being overridden by subclasses
-    public void changeToppings(String x, String y, String z) {}
-
-    // being overridden by subclasses
-    public void addMilk(String milk) {}
-
-    // being overridden by subclasses
-    public void addSugar(int sugarNumber) {}
-
+    public abstract void addSugar(int sugarNumber);
 }
