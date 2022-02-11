@@ -1,33 +1,25 @@
 package model;
 
-public class Espresso implements Drink {
+public abstract class Espresso implements Drink {
 
 
-    @Override
+    // being overridden by subclasses
     public double getPrice() {
         return 0.0;
     }
 
-
+    // being overridden by subclasses
     public String getNameDrink() {
-
         return "";
     }
 
+    // being overridden by subclasses
+    public void changeToppings(String x, String y, String z) {}
 
-    public void changeToppings(String x, String y, String z) {
+    // being overridden by subclasses
+    public void addMilk(String milk) {}
 
-    }
-
-
-    public void addMilk(String milk) {
-
-    }
-
-
-    public void addSugar(int sugarNumber) {
-
-
-    }
+    // being overridden by subclasses
+    public void addSugar(int sugarNumber) {}
 
 }
