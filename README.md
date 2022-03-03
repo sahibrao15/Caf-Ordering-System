@@ -31,7 +31,7 @@ their full effort into providing the best quality of food and beverages.
 
 - As a user, I would like to be automatically applied for discounts (ex. 10% chance of half price off your order)
 
-- As a user, I want to be able to save my coffee order, including all the specifications as well as the prices of each item, till that point of the transaction 
+- As a user, I want to be able to save all the drinks I have ordered up till that point, but only the drinks but not customisations
 
 - As a user, I would like to be able to load up my coffee order and continue from where I left off in the transaction 
 

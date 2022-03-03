@@ -1,6 +1,7 @@
 package ui;
 
-import model.*;
+import model.Drink;
+import model.Order;
 import persistance.JsonReader;
 import persistance.JsonWriter;
 
@@ -19,7 +20,7 @@ public class OrderPage {
     private JsonReader jsonReader;
 
     // EFFECTS: initializes the orderList and sets the totalPrice to 0 before starting the chain of commands to order
-    public OrderPage() {
+    public OrderPage() throws FileNotFoundException {
         input = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
@@ -34,8 +35,6 @@ public class OrderPage {
         System.out.println("Here is the menu page, please select a number to choose the action you want to take\n");
         System.out.println("1. Order A Drink \n2. Customize A Drink \n3. Remove A Drink\n4. Summary of Drinks");
         System.out.println("5. Checkout\n6. Save OrderPage\n7. Load OrderPage");
-
-
         Scanner number = new Scanner(System.in);
         int numOption = number.nextInt();
         if (numOption == 1) {
@@ -49,11 +48,9 @@ public class OrderPage {
         } else if (numOption == 5) {
             endingMessage();
         } else if (numOption == 6) {
-            System.out.println("Saved OrderPage");
             saveOrder();
             menuPage();
         } else {
-            System.out.println("Loading OrderPage");
             loadOrder();
             menuPage();
         }
@@ -132,7 +129,6 @@ public class OrderPage {
 
         if (drink.equals("latte")) {
             order.orderLatte(drinkSize);
-
 
 
         } else if (drink.equals("americano")) {
