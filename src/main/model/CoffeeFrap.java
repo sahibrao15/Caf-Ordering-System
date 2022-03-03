@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // a class representing an Coffee Frap that is extending blended's methods that are implemented in Drink
 public class CoffeeFrap extends Blended {
 
@@ -76,4 +78,14 @@ public class CoffeeFrap extends Blended {
     public String getNameDrink() {
         return nameToCall;
     }
+
+    // @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", "Coffee Frap");
+        json.put("price", frapPrice);
+        json.put("call", nameToCall);
+        return json;
+    }
+
 }

@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // a class representing an Smoothie that is extending blended's methods that are implemented in Drink
 public class Smoothie extends Blended {
 
@@ -76,6 +78,15 @@ public class Smoothie extends Blended {
     // getter method for smoothiePrice
     public double getPrice() {
         return this.smoothiePrice;
+    }
+
+    // @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", "Smoothie");
+        json.put("price", smoothiePrice);
+        json.put("call", nameToCall);
+        return json;
     }
 
 }

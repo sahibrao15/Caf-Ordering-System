@@ -1,8 +1,18 @@
 package ui;
 
-// the main function, functin to run
+//import java.io.FileNotFoundException;
+
+
 public class Main {
     public static void main(String[] args) {
-        new Order();
+
+        new OrderPage();
     }
+//        try {
+//            new OrderPage();
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Unable to run application: file not found");
+//        }
+//    }
+
 }

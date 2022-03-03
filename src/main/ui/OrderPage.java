@@ -1,28 +1,85 @@
 package ui;
 
 import model.*;
+import persistance.JsonReader;
+import persistance.JsonWriter;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
-// a Order class to keep track of the order, having an Arraylist of Drinks at all time
-public class Order {
+// a OrderPage class to keep track of the order, having an Arraylist of Drinks at all time
+public class OrderPage {
 
-    ArrayList<Drink> orderList;
-    double totalPrice;
+    private Order order;
+
+    private static final String JSON_STORE = "./data/order.json";
+    private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+    // EFFECTS: initializes the orderList and sets the totalPrice to 0 before starting the chain of commands to order
+    public OrderPage() {
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
+        order = new Order();
+        welcomeMessage();
+        menuPage();
+    }
+
+    // EFFECTS: gives the user a menu to operate on and give them a choice on which option they want to pick
+    public void menuPage() {
+        System.out.println("Here is the menu page, please select a number to choose the action you want to take\n");
+        System.out.println("1. Order A Drink \n2. Customize A Drink \n3. Remove A Drink\n4. Summary of Drinks");
+
+        System.out.println("5. Checkout\n6. Save OrderPage\n7. Load OrderPage");
+
+        System.out.println("7. Load OrderPage");
+
+        Scanner number = new Scanner(System.in);
+        int numOption = number.nextInt();
+        if (numOption == 1) {
+            orderTypeDrink();
+        } else if (numOption == 2) {
+            customizeOrNo();
+        } else if (numOption == 3) {
+            removeDrink();
+        } else if (numOption == 4) {
+            printListOfDrinks();
+        } else if (numOption == 5) {
+            endingMessage();
+        } else if (numOption == 6) {
+            System.out.println("Saved OrderPage");
+            saveOrder();
+        } else {
+            System.out.println("Loading OrderPage");
+            loadOrder();
+        }
+    }
 
     // MODIFIES: this
-    // EFFECTS: initializes the orderList and sets the totalPrice to 0 before starting the chain of commands to order
-    public Order() {
-        orderList = new ArrayList<>();
-        totalPrice = 0;
+    // EFFECTS: loads order from file
+    private void loadOrder() {
+        try {
+            order = jsonReader.read();
+            System.out.println("Loaded order from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 
-        welcomeMessage();
-        orderTypeDrink();
-        customizeOrNo();
-        printListOfDrinks();
-        removeDrink();
-        endingMessage();
+    // EFFECTS: saves the order to file
+    private void saveOrder() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(order);
+            jsonWriter.close();
+            System.out.println("Saved order to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
     }
 
     // MODIFIES: this
@@ -31,18 +88,18 @@ public class Order {
         System.out.println("\033[3m");
         System.out.println("Welcome to your very own virtual café!");
         System.out.println("\nPlease note that all requests must be typed in \033[1mlowercase\033[0m lettres!");
-        System.out.println();
-        System.out.print("First, order up to as many drinks as you want,");
-        System.out.println(" then customize up to as many as you want!");
+        //System.out.println();
+        // System.out.print("First, order up to as many drinks as you want,");
+        // System.out.println(" then customize up to as many as you want!");
         System.out.print("\nFor the launch of this café, we are giving u a 10% chance to get 50% off your entire ");
-        System.out.println("order!!!\033[0m");
+        System.out.println("order!!!\033[0m\n");
     }
 
     // MODIFIES: this
     // EFFECTS: Asks customers which type of drink they would like to add for arbitrary numbered drink
     //          before leading them to either orderEspresso() or orderBlended()
     public void orderTypeDrink() {
-        System.out.println("\nWhat can we get for drink number " + (orderList.size() + 1) + "?");
+        System.out.println("\nWhat can we get for drink number " + (order.getList().size() + 1) + "?");
         Scanner drinkType = new Scanner(System.in);
         System.out.println("An Espresso Beverage or a Blended Beverage?");
         System.out.println("\033[3mInsert either espresso or blended below\033[0m");
@@ -62,7 +119,7 @@ public class Order {
     // MODIFIES: this, orderList
     // EFFECTS: Asks customers which espresso drink they would like to add to orderList
     public void orderEspresso() {
-        Espresso espDrink;
+
         System.out.println("\nWould you like a latte or an americano?");
         System.out.println("\033[3mInsert either latte or americano below\033[0m");
         Scanner ansDrink = new Scanner(System.in);
@@ -74,23 +131,24 @@ public class Order {
         String drinkSize = size.nextLine();
 
         if (drink.equals("latte")) {
-            espDrink = new Latte(drinkSize);
-            addToList(espDrink);
+            order.orderLatte(drinkSize);
+
+
 
         } else if (drink.equals("americano")) {
-            espDrink = new Americano(drinkSize);
-            addToList(espDrink);
+            order.orderAmericano(drinkSize);
+
         } else {
             System.out.println("You have selected neither, please try again");
             orderEspresso();
         }
-        orderAgain();
+        menuPage();
     }
 
     // MODIFIES: this, orderList
     // EFFECTS: Asks customers which blended drink they would like to add to orderList
     public void orderBlended() {
-        Blended blendDrink;
+
         System.out.println("\nWould you like a coffee frap or a smoothie?");
         System.out.println("\033[3mInsert either coffee frap or smmothie below\033[0m");
         Scanner ansDrink = new Scanner(System.in);
@@ -102,17 +160,16 @@ public class Order {
         String drinkSize = size.nextLine();
 
         if (drink.equals("coffee frap")) {
-            blendDrink = new CoffeeFrap(drinkSize);
-            addToList(blendDrink);
+            order.orderCoffeeFrap(drinkSize);
 
         } else if (drink.equals("smoothie")) {
-            blendDrink = new Smoothie(drinkSize);
-            addToList(blendDrink);
+            order.orderSmoothie(drinkSize);
+
         } else {
             System.out.println("You have selected neither, please try again\n");
             orderBlended();
         }
-        orderAgain();
+        menuPage();
     }
 
     // MODIFIES: this
@@ -125,7 +182,7 @@ public class Order {
         if (customDrink.equals("yes")) {
             customizeDrink();
         } else if (customDrink.equals("no")) {
-            System.out.println("\nProceeding to checkout mode!");
+            menuPage();
         } else {
             System.out.println("You have selected neither, please try again");
             customizeOrNo();
@@ -141,9 +198,9 @@ public class Order {
         Scanner number = new Scanner(System.in);
         int numDrink = number.nextInt();
 
-        customizeToppings(orderList.get(numDrink - 1));
-        changeMilk(orderList.get(numDrink - 1));
-        changeSugar(orderList.get(numDrink - 1));
+        customizeToppings(numDrink);
+        changeMilk(numDrink);
+        changeSugar(numDrink);
 
         System.out.println("\n\033[1mWould you would like to customize any more?\033[0m");
         Scanner answer1 = new Scanner(System.in);
@@ -151,13 +208,15 @@ public class Order {
 
         if (answer1yes.equals("yes")) {
             customizeDrink();
+        } else {
+            menuPage();
         }
     }
 
     // MODIFIES: this, Drink
     // EFFECTS: Asks customers which toppings they would like on their drink and using changeToppings method
     //          to edit the Drink
-    public void customizeToppings(Drink d) {
+    public void customizeToppings(int number) {
         System.out.println("Which toppings would you like? Enter yes or no for each topping");
         System.out.println("Keep in mind that each topping is an additional $0.10\n");
         System.out.println("Whip cream?");
@@ -172,13 +231,13 @@ public class Order {
         Scanner scanCaramel = new Scanner(System.in);
         String caramel = scanCaramel.nextLine();
         System.out.println();
-        d.changeToppings(whipCream, cinnamon, caramel);
+        order.toppings(number, whipCream, cinnamon, caramel);
     }
 
     // MODIFIES: this, Drink
     // EFFECTS: Asks customers which milk they would like for their drink and using changeMilk method
     //          to edit the Drink
-    public void changeMilk(Drink d) {
+    public void changeMilk(int number) {
         System.out.println("Would you like to change milk?");
         Scanner answer = new Scanner(System.in);
         String milkChange = answer.nextLine();
@@ -186,32 +245,32 @@ public class Order {
             System.out.println("We have the option of oat, soy or almond milk, which would you like");
             Scanner milk = new Scanner(System.in);
             String milkChangeTo = milk.nextLine();
-            d.addMilk(milkChangeTo); ///?????
+            order.milk(number, milkChangeTo);
         }
     }
 
     // MODIFIES: this, Drink
     // EFFECTS: Asks customers how many sugars would like for their drink and using changeSugar method
     //          to edit the Drink
-    public void changeSugar(Drink d) {
+    public void changeSugar(int number) {
         System.out.println("How many sugars would you like to add, for no additional charge");
         Scanner sugar = new Scanner(System.in);
         int sugarNumber = sugar.nextInt();
-        d.addSugar(sugarNumber);
+        order.sugar(number, sugarNumber);
     }
 
-    // MODIFIES: this
-    // EFFECTS: Asks customers if they would like to order another drink
-    //          if yes, orderTypeDrink(), if not continue.
-    public void orderAgain() {
-        System.out.println("\nWould you like to order another drink?");
-        Scanner orderAgain = new Scanner(System.in);
-        String repeat = orderAgain.nextLine();
-
-        if (repeat.equals("yes") || repeat.equals("Yes")) {
-            orderTypeDrink();
-        }
-    }
+//    // MODIFIES: this
+//    // EFFECTS: Asks customers if they would like to order another drink
+//    //          if yes, orderTypeDrink(), if not continue.
+//    public void orderAgain() {
+//        System.out.println("\nWould you like to order another drink?");
+//        Scanner orderAgain = new Scanner(System.in);
+//        String repeat = orderAgain.nextLine();
+//
+//        if (repeat.equals("yes") || repeat.equals("Yes")) {
+//            orderTypeDrink();
+//        }
+//    }
 
     // MODIFIES: this
     // EFFECTS: Gives the ending message with total price and adding the discount if they got it or not
@@ -222,28 +281,32 @@ public class Order {
         int random = (int) Math.floor(Math.random() * (max - min + 1) + min);
         if (random == 2) {
             System.out.print("\n\033[1mYour total is $");
-            System.out.println(String.format("%.2f", (totalPrice() * 0.56)) + " with tax.\033[0m");
+            System.out.println(String.format("%.2f", (order.getPrice() * 0.56)) + " with tax.\033[0m");
             System.out.println("Congratulations, you have won the 50% discount off of your order! ");
         } else {
             System.out.print("\n\033[1mYour total is $");
-            System.out.println(String.format("%.2f", (totalPrice() * 1.12)) + " with tax.\033[0m");
+            System.out.println(String.format("%.2f", (order.getPrice() * 1.12)) + " with tax.\033[0m");
             System.out.println("Unfortunately you didn't win the 50% discount this time!");
         }
 
         System.out.println("We hope you have a great day and come again!");
+
+        menuPage();
     }
 
     // MODIFIES: this
     // EFFECTS: lists out all the names of the drinks, as well as the adjustments and the price at the dn
     public void printListOfDrinks() {
         System.out.println();
-        for (int i = 1; i <= orderList.size(); i++) {
+        for (int i = 1; i <= order.getList().size(); i++) {
             System.out.println("--beep--");
         }
         System.out.println("\nHere is the list of drinks:");
-        for (Drink d : orderList) {
+        for (Drink d : order.getList()) {
             System.out.println("-" + d.getNameDrink() + " = $" + String.format("%.2f", d.getPrice()));
         }
+
+        menuPage();
     }
 
     public void removeDrink() {
@@ -254,25 +317,27 @@ public class Order {
             System.out.println("\nWhich numbered drink would you like to get rid of?");
             Scanner number = new Scanner(System.in);
             int takeOut = number.nextInt();
-            System.out.println(orderList.get(takeOut - 1).getNameDrink() + " has been removed");
-            orderList.remove(takeOut - 1);
+            System.out.println("Drink has been removed");
+            order.remove(takeOut);
         }
+
+        menuPage();
     }
 
-    // MODIFIES: this, orderList
-    // EFFECTS: Adding drink d to the orderList
-    public void addToList(Drink d) {
-        orderList.add(d);
-    }
+//    // MODIFIES: this, orderList
+//    // EFFECTS: Adding drink d to the orderList
+//    public void addToList(Drink d) {
+//        orderList.add(d);
+//    }
 
-    // MODIFIES: this
-    // EFFECTS: adding up all the prices of the drinks in orderList and returning the totalPrice
-    public double totalPrice() {
-        double allPrice = 0.0;
-        for (Drink d : orderList) {
-            allPrice += d.getPrice();
-        }
-        return allPrice;
-    }
+//    // MODIFIES: this
+//    // EFFECTS: adding up all the prices of the drinks in orderList and returning the totalPrice
+//    public double totalPrice() {
+//        double allPrice = 0.0;
+//        for (Drink d : orderList) {
+//            allPrice += d.getPrice();
+//        }
+//        return allPrice;
+//    }
 
 }

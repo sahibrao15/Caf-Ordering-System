@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // an interface for Espresso class and Blended drinks
 public interface Drink {
 
@@ -18,4 +20,6 @@ public interface Drink {
     // being overridden by subclasses
     String getNameDrink();
 
+    // being overridden by subclasses
+    JSONObject toJson();
 }

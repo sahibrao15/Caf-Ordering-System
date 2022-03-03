@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // an abstract class that represents all Blended drinks
 public abstract class Blended implements Drink {
 
@@ -17,4 +19,7 @@ public abstract class Blended implements Drink {
 
     // being overridden by subclasses
     public abstract void addSugar(int sugar);
+
+    // being overridden by subclasses
+    public abstract JSONObject toJson();
 }

@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // a class representing an Americano that is extending espresso's methods that are implemented in Drink
 public class Americano extends Espresso {
 
@@ -77,4 +79,12 @@ public class Americano extends Espresso {
         return americanoPrice;
     }
 
+   // @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", "Americano");
+        json.put("price", americanoPrice);
+        json.put("call", nameToCall);
+        return json;
+    }
 }

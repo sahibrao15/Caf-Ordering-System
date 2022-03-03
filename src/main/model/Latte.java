@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // a class representing an Latte that is extending espresso's methods that are implemented in Drink
 public class Latte extends Espresso {
 
@@ -76,6 +78,15 @@ public class Latte extends Espresso {
     //getter method for nameToCall
     public String getNameDrink() {
         return nameToCall;
+    }
+
+    // @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", "Latte");
+        json.put("price", lattePrice);
+        json.put("call", nameToCall);
+        return json;
     }
 
 }
