@@ -1,7 +1,6 @@
 package persistance;
 
 
-import model.Drink;
 import model.Order;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,7 +32,7 @@ public class JsonReader {
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (Stream<String> stream = Files.lines( Paths.get(source), StandardCharsets.UTF_8)) {
+        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
@@ -42,7 +41,7 @@ public class JsonReader {
 
     // EFFECTS: parses order from JSON object and returns it
     private Order parseOrder(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
+        String name = jsonObject.getString("Order");
         Order order = new Order();
         addDrinks(order, jsonObject);
         return order;
@@ -51,20 +50,71 @@ public class JsonReader {
     // MODIFIES: order
     // EFFECTS: parses drinks from JSON object and adds them to workroom
     private void addDrinks(Order order, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("thingies");
+        JSONArray jsonArray = jsonObject.getJSONArray("Drink");
         for (Object json : jsonArray) {
-            JSONObject nextThingy = (JSONObject) json;
-            addDrink(order, nextThingy);
+            JSONObject nextDrink = (JSONObject) json;
+            addDrink(order, nextDrink);
         }
     }
 
     // MODIFIES: order
     // EFFECTS: parses drink from JSON object and adds it to workroom
     private void addDrink(Order order, JSONObject jsonObject) {
-//        String name = jsonObject.getString("name");
-//        Category category = Category.valueOf(jsonObject.getString("category"));
-//        Thingy thingy = new Thingy(name, category);
-//        wr.addThingy(thingy);
+        String drinkName = jsonObject.getString("name");
+        int price = jsonObject.getInt("price");
+        decideDrink(order, drinkName, price);
+    }
+
+    private void decideDrink(Order order, String call, int price) {
+        if (call.equals("Latte")) {
+            orderingLatte(order, price);
+        } else if (call.equals("Americano")) {
+            orderingAmericano(order, price);
+        } else if (call.equals("Smoothie")) {
+            orderingSmoothie(order, price);
+        } else if (call.equals("Coffee Frap")) {
+            orderingCoffeeFrap(order, price);
+        }
+    }
+
+    private void orderingCoffeeFrap(Order order, int price) {
+        if (price >= 5.50) {
+            order.orderCoffeeFrap("large");
+        } else if (price >= 4.50) {
+            order.orderCoffeeFrap("medium");
+        } else if (price >= 3.50) {
+            order.orderCoffeeFrap("small");
+        }
+    }
+
+    private void orderingSmoothie(Order order, int price) {
+        if (price >= 5.10) {
+            order.orderSmoothie("large");
+        } else if (price >= 4.85) {
+            order.orderSmoothie("medium");
+        } else if (price >= 3.45) {
+            order.orderSmoothie("small");
+        }
+    }
+
+    private void orderingAmericano(Order order, int price) {
+        if (price >= 4.00) {
+            order.orderAmericano("large");
+        } else if (price >= 3.00) {
+            order.orderAmericano("medium");
+        } else if (price >= 2.85) {
+            order.orderAmericano("small");
+        }
+    }
+
+    private void orderingLatte(Order order, int price) {
+        if (price >= 5.00) {
+            order.orderLatte("large");
+        } else if (price >= 4.00) {
+            order.orderLatte("medium");
+        } else if (price >= 3.00) {
+            order.orderLatte("small");
+        }
     }
 
 

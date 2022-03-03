@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class Order {
 
     private ArrayList<Drink> orderList;
-    private double totalPrice;
+
 
     public Order() {
         orderList = new ArrayList<>();
-        totalPrice = 0;
+
     }
 
     public void orderSmoothie(String size) {
@@ -69,7 +69,7 @@ public class Order {
    // @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Order", "Starbucks");
+        json.put("Order", "Drinks");
         json.put("Drink", drinksToJson());
         return json;
     }

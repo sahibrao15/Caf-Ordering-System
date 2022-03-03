@@ -1,11 +1,17 @@
 {
-  "orderName":"sib",
-  "orderTotal": 15.00,
-  "orderItems": [
-    {
-      "drinkType": "mocha",
-      "drinkPrice": 1.00,
-      "drinkInstructions": "Extra whip"
-    }
-  ],
+    "Order": "Drinks",
+    "Drink": [
+        {
+            "price": 3,
+            "name": "Latte"
+        },
+        {
+            "price": 4.5,
+            "name": "Coffee Frap"
+        },
+        {
+            "price": 4,
+            "name": "Americano"
+        }
+    ]
 }

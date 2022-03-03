@@ -83,9 +83,10 @@ public class Smoothie extends Blended {
     // @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("name", "Smoothie");
         json.put("price", smoothiePrice);
-        json.put("call", nameToCall);
+        json.put("name", "Smoothie");
+
+
         return json;
     }
 

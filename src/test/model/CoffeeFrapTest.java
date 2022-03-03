@@ -70,4 +70,6 @@ public class CoffeeFrapTest {
         drink3.addSugar(0);
         assertEquals("The large coffee frap", drink3.getNameDrink());
     }
+
+
 }

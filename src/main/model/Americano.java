@@ -16,10 +16,10 @@ public class Americano extends Espresso {
             americanoPrice = 2.85;
             nameToCall = "The small americano";
         } else if (size.equals("medium")) {
-            americanoPrice = 3.00;
+            americanoPrice = 3.85;
             nameToCall = "The medium americano";
         } else {
-            americanoPrice = 4.00;
+            americanoPrice = 4.85;
             nameToCall = "The large americano";
         }
     }
@@ -82,9 +82,8 @@ public class Americano extends Espresso {
    // @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("name", "Americano");
         json.put("price", americanoPrice);
-        json.put("call", nameToCall);
+        json.put("name", "Americano");
         return json;
     }
 }

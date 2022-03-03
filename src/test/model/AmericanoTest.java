@@ -26,10 +26,10 @@ public class AmericanoTest {
         assertEquals(2.85, drink1.getPrice());
         assertEquals("The small americano", drink1.getNameDrink());
 
-        assertEquals(3.00, drink2.getPrice());
+        assertEquals(3.85, drink2.getPrice());
         assertEquals("The medium americano", drink2.getNameDrink());
 
-        assertEquals(4.00, drink3.getPrice());
+        assertEquals(4.85, drink3.getPrice());
         assertEquals("The large americano", drink3.getNameDrink());
     }
 
@@ -43,13 +43,13 @@ public class AmericanoTest {
         assertEquals(nameOfDrink1, drink1.getNameDrink());
 
         drink2.changeToppings("yes", "no", "no");
-        assertEquals(3.00 + 0.10, drink2.getPrice());
+        assertEquals( 3.85+ 0.10, drink2.getPrice());
         String nameOfDrink2;
         nameOfDrink2 = "The medium americano with whip cream, without cinnamon powder and without caramel drizzle";
         assertEquals(nameOfDrink2, drink2.getNameDrink());
 
         drink3.changeToppings("no", "no", "no");
-        assertEquals(4.00, drink3.getPrice());
+        assertEquals(4.85, drink3.getPrice());
         String nameOfDrink3;
         nameOfDrink3 = "The large americano without whip cream, without cinnamon powder and without caramel drizzle";
         assertEquals(nameOfDrink3, drink3.getNameDrink());
