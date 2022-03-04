@@ -43,9 +43,9 @@ public class JsonWriterTest {
     void testWriterGeneralWorkroom() {
         try {
             Order order = new Order();
-            order.orderLatte("small");
-            order.orderCoffeeFrap("medium");
-            order.orderAmericano("large");
+            order.orderLatte("small", "the small latte");
+            order.orderCoffeeFrap("medium", "the medium coffee frap");
+            order.orderAmericano("large", "the large americano");
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
             writer.open();
             writer.write(order);

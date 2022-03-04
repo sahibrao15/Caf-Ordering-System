@@ -2,14 +2,20 @@
     "Order": "Drinks",
     "Drink": [
         {
+            "call": "the small latte",
+            "size": "small",
             "price": 3,
             "name": "Latte"
         },
         {
+            "call": "the medium coffee frap",
+            "size": "medium",
             "price": 4.5,
             "name": "Coffee Frap"
         },
         {
+            "call": "the large americano",
+            "size": "large",
             "price": 4.85,
             "name": "Americano"
         }

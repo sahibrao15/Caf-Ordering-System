@@ -80,9 +80,9 @@ public class CoffeeFrapTest {
     void testToJson() {
         try {
             Order order = new Order();
-            order.orderCoffeeFrap("small");
-            order.orderCoffeeFrap("medium");
-            order.orderCoffeeFrap("large");
+            order.orderCoffeeFrap("small", "The small coffee frap");
+            order.orderCoffeeFrap("medium", "The medium coffee frap");
+            order.orderCoffeeFrap("large", "The large coffee frap");
             JsonWriter writer = new JsonWriter("./data/testJson.json");
             writer.open();
             writer.write(order);

@@ -80,9 +80,9 @@ public class SmoothieTest {
     void testToJson() {
         try {
             Order order = new Order();
-            order.orderSmoothie("small");
-            order.orderSmoothie("medium");
-            order.orderSmoothie("large");
+            order.orderSmoothie("small", "The small smoothie");
+            order.orderSmoothie("medium", "The medium smoothie");
+            order.orderSmoothie("large", "The large smoothie");
             JsonWriter writer = new JsonWriter("./data/testJson.json");
             writer.open();
             writer.write(order);

@@ -7,18 +7,35 @@ public class CoffeeFrap extends Blended {
 
     private double frapPrice;
     private String nameToCall;
+    private String size;
+
+    public void setNameToCall(String nameToCall) {
+        this.nameToCall = nameToCall;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
 
     // REQUIRES: a string size of "small", "medium" or "large"
     // EFFECTS:  based on the size, frapPrice will be the correct price of the coffee frap,
     //           and the nameToCall will contain the right size of the coffee frap
     public CoffeeFrap(String size) {
         if (size.equals("small")) {
+            setSize("small");
             frapPrice = 3.50;
             nameToCall = "The small coffee frap";
         } else if (size.equals("medium")) {
+            setSize("medium");
             frapPrice = 4.50;
             nameToCall = "The medium coffee frap";
         } else {
+            setSize("large");
             frapPrice = 5.50;
             nameToCall = "The large coffee frap";
         }
@@ -85,6 +102,8 @@ public class CoffeeFrap extends Blended {
         JSONObject json = new JSONObject();
         json.put("price", frapPrice);
         json.put("name", "Coffee Frap");
+        json.put("size", getSize());
+        json.put("call", getNameDrink());
         return json;
     }
 

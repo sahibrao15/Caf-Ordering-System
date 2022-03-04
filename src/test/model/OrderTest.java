@@ -32,65 +32,65 @@ public class OrderTest {
 
     @Test
     void testOrderSmoothie(){
-        order1.orderSmoothie("small");
+        order1.orderSmoothie("small", "The small smoothie");
         assertEquals(1,order1.getList().size());
         assertEquals(3.45,order1.getPrice());
 
-        order1.orderSmoothie("medium");
+        order1.orderSmoothie("medium", "The medium smoothie");
         assertEquals(2,order1.getList().size());
         assertEquals(3.45+3.90,order1.getPrice());
 
-        order1.orderSmoothie("large");
+        order1.orderSmoothie("large", "The large smoothie");
         assertEquals(3,order1.getList().size());
         assertEquals(3.45+3.90+5.10,order1.getPrice());
     }
     @Test
     void testOrderLatte(){
-        order1.orderLatte("small");
+        order1.orderLatte("small", "The small latte");
         assertEquals(1,order1.getList().size());
         assertEquals(3.00,order1.getPrice());
 
-        order1.orderLatte("medium");
+        order1.orderLatte("medium", "The medium latte");
         assertEquals(2,order1.getList().size());
         assertEquals(7.00,order1.getPrice());
 
-        order1.orderLatte("large");
+        order1.orderLatte("large", "The large latte");
         assertEquals(3,order1.getList().size());
         assertEquals(12.0,order1.getPrice());
     }
     @Test
     void testOrderAmericano(){
-        order1.orderAmericano("small");
+        order1.orderAmericano("small", "The small americano");
         assertEquals(1,order1.getList().size());
         assertEquals(2.85,order1.getPrice());
 
-        order1.orderAmericano("medium");
+        order1.orderAmericano("medium", "The medium americano");
         assertEquals(2,order1.getList().size());
         assertEquals(2.85+3.85,order1.getPrice());
 
-        order1.orderAmericano("large");
+        order1.orderAmericano("large", "The large americano");
         assertEquals(3,order1.getList().size());
         assertEquals(2.85+3.85+4.85,order1.getPrice());
     }
     @Test
-    void testOrderCoffeeFrap(){
-        order1.orderCoffeeFrap("small");
+    void testOrderCoffeeFrap() {
+        order1.orderCoffeeFrap("small", "The small coffee frap");
         assertEquals(1,order1.getList().size());
         assertEquals(3.5,order1.getPrice());
 
-        order1.orderCoffeeFrap("medium");
+        order1.orderCoffeeFrap("medium", "The medium coffee frap");
         assertEquals(2,order1.getList().size());
         assertEquals(8.0,order1.getPrice());
 
-        order1.orderCoffeeFrap("large");
+        order1.orderCoffeeFrap("large", "The large coffee frap");
         assertEquals(3,order1.getList().size());
         assertEquals(13.5,order1.getPrice());
     }
 
     @Test
     void testToppings(){
-        order1.orderCoffeeFrap("small");
-        order1.orderCoffeeFrap("medium");
+        order1.orderCoffeeFrap("small", "The small coffee frap");
+        order1.orderCoffeeFrap("medium", "The medium coffee frap");
 
         order1.toppings(1,"yes","yes","yes");
         assertEquals(3.50 + 0.10 + 0.10 + 0.10, order1.getList().get(0).getPrice());
@@ -106,8 +106,8 @@ public class OrderTest {
     }
     @Test
     void testMilk(){
-        order1.orderLatte("small");
-        order1.orderLatte("medium");
+        order1.orderLatte("small", "The small latte");
+        order1.orderLatte("medium", "The medium latte");
 
         order1.milk(1,"oat");
         assertEquals("The small latte, made with oat milk", order1.getList().get(0).getNameDrink());
@@ -119,9 +119,9 @@ public class OrderTest {
     }
     @Test
     void testSugar(){
-        order1.orderLatte("small");
-        order1.orderLatte("medium");
-        order1.orderLatte("large");
+        order1.orderLatte("small", "The small latte");
+        order1.orderLatte("medium", "The medium latte");
+        order1.orderLatte("large", "The large latte");
 
         order1.sugar(1,1);
         assertEquals("The small latte and 1 packet of sugar", order1.getList().get(0).getNameDrink());
@@ -133,9 +133,9 @@ public class OrderTest {
 
     @Test
     void testRemove(){
-        order1.orderLatte("small");
-        order1.orderLatte("medium");
-        order1.orderLatte("large");
+        order1.orderLatte("small", "The small latte");
+        order1.orderLatte("medium", "The medium latte");
+        order1.orderLatte("large", "The large latte");
 
         order1.remove(2);
         assertEquals(2,order1.getList().size());

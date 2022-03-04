@@ -128,11 +128,11 @@ public class OrderPage {
         String drinkSize = size.nextLine();
 
         if (drink.equals("latte")) {
-            order.orderLatte(drinkSize);
+            order.orderLatte(drinkSize, "ignore");
 
 
         } else if (drink.equals("americano")) {
-            order.orderAmericano(drinkSize);
+            order.orderAmericano(drinkSize, "ignore");
 
         } else {
             System.out.println("You have selected neither, please try again");
@@ -156,10 +156,10 @@ public class OrderPage {
         String drinkSize = size.nextLine();
 
         if (drink.equals("coffee frap")) {
-            order.orderCoffeeFrap(drinkSize);
+            order.orderCoffeeFrap(drinkSize, "ignore");
 
         } else if (drink.equals("smoothie")) {
-            order.orderSmoothie(drinkSize);
+            order.orderSmoothie(drinkSize, "ignore");
 
         } else {
             System.out.println("You have selected neither, please try again\n");

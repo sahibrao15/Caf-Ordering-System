@@ -2,14 +2,20 @@
     "Order": "Drinks",
     "Drink": [
         {
+            "call": "The small coffee frap",
+            "size": "small",
             "price": 3.5,
             "name": "Coffee Frap"
         },
         {
+            "call": "The medium coffee frap",
+            "size": "medium",
             "price": 4.5,
             "name": "Coffee Frap"
         },
         {
+            "call": "The large coffee frap",
+            "size": "large",
             "price": 5.5,
             "name": "Coffee Frap"
         }

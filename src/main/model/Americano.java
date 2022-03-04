@@ -7,18 +7,37 @@ public class Americano extends Espresso {
 
     private double americanoPrice;
     private String nameToCall;
+    private String size;
+
+
+
+
+    public void setNameToCall(String nameToCall) {
+        this.nameToCall = nameToCall;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getSize() {
+        return size;
+    }
 
     // REQUIRES: a string size of "small", "medium" or "large"
     // EFFECTS:  based on the size, americanoPrice will be the correct price of the americano,
     //           and the nameToCall will contain the right size of the americano
     public Americano(String size) {
         if (size.equals("small")) {
+            setSize("small");
             americanoPrice = 2.85;
             nameToCall = "The small americano";
         } else if (size.equals("medium")) {
+            setSize("medium");
             americanoPrice = 3.85;
             nameToCall = "The medium americano";
         } else {
+            setSize("large");
             americanoPrice = 4.85;
             nameToCall = "The large americano";
         }
@@ -85,6 +104,8 @@ public class Americano extends Espresso {
         JSONObject json = new JSONObject();
         json.put("price", americanoPrice);
         json.put("name", "Americano");
+        json.put("size", getSize());
+        json.put("call", getNameDrink());
         return json;
     }
 }

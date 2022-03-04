@@ -85,9 +85,9 @@ public class AmericanoTest {
     void testToJson() {
         try {
             Order order = new Order();
-            order.orderAmericano("small");
-            order.orderAmericano("medium");
-            order.orderAmericano("large");
+            order.orderAmericano("small", "The small americano");
+            order.orderAmericano("medium", "The medium americano");
+            order.orderAmericano("large", "The large americano");
             JsonWriter writer = new JsonWriter("./data/testJson.json");
             writer.open();
             writer.write(order);

@@ -7,18 +7,36 @@ public class Latte extends Espresso {
 
     private double lattePrice;
     private String nameToCall;
+    private String size;
+
+
+
+    public void setNameToCall(String nameToCall) {
+        this.nameToCall = nameToCall;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 
     // REQUIRES: a string size of "small", "medium" or "large"
     // EFFECTS:  based on the size, lattePrice will be the correct price of the latte,
     //           and the nameToCall will contain the right size of the latte
     public Latte(String size) {
         if (size.equals("small")) {
+            setSize("small");
             lattePrice = 3.00;
             nameToCall = "The small latte";
         } else if (size.equals("medium")) {
+            setSize("medium");
             lattePrice = 4.00;
             nameToCall = "The medium latte";
         } else {
+            setSize("large");
             lattePrice = 5.00;
             nameToCall = "The large latte";
         }
@@ -85,6 +103,8 @@ public class Latte extends Espresso {
         JSONObject json = new JSONObject();
         json.put("price", lattePrice);
         json.put("name", "Latte");
+        json.put("size", getSize());
+        json.put("call", getNameDrink());
         return json;
     }
 

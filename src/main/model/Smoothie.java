@@ -6,19 +6,38 @@ import org.json.JSONObject;
 public class Smoothie extends Blended {
 
     private double smoothiePrice;
+
+
+
+    public void setNameToCall(String nameToCall) {
+        this.nameToCall = nameToCall;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
     private String nameToCall;
+    private String size;
 
     // REQUIRES: a string size of "small", "medium" or "large"
     // EFFECTS:  based on the size, smoothiePrice will be the correct price of the smoothie,
     //           and the nameToCall will contain the right size of the smoothie
     public Smoothie(String size) {
         if (size.equals("small")) {
+            setSize("small");
             smoothiePrice = 3.45;
             nameToCall = "The small smoothie";
         } else if (size.equals("medium")) {
             smoothiePrice = 3.90;
+            setSize("medium");
             nameToCall = "The medium smoothie";
         } else {
+            setSize("large");
             smoothiePrice = 5.10;
             nameToCall = "The large smoothie";
         }
@@ -85,6 +104,8 @@ public class Smoothie extends Blended {
         JSONObject json = new JSONObject();
         json.put("price", smoothiePrice);
         json.put("name", "Smoothie");
+        json.put("size", getSize());
+        json.put("call", getNameDrink());
 
         return json;
     }

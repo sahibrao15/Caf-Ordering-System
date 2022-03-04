@@ -83,9 +83,9 @@ public class LatteTest {
     void testToJson() {
         try {
             Order order = new Order();
-            order.orderLatte("small");
-            order.orderLatte("medium");
-            order.orderLatte("large");
+            order.orderLatte("small", "The small latte");
+            order.orderLatte("medium", "The medium latte");
+            order.orderLatte("large", "The large latte");
             JsonWriter writer = new JsonWriter("./data/testJson.json");
             writer.open();
             writer.write(order);

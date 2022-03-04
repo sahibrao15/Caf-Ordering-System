@@ -42,9 +42,12 @@ public class JsonReader {
     // EFFECTS: parses order from JSON object and returns it
     private Order parseOrder(JSONObject jsonObject) {
         String name = jsonObject.getString("Order");
-        Order order = new Order();
-        addDrinks(order, jsonObject);
-        return order;
+        if (name.equals("Drinks")) {
+            Order order = new Order();
+            addDrinks(order, jsonObject);
+            return order;
+        }
+        return null;
     }
 
     // MODIFIES: order
@@ -62,58 +65,60 @@ public class JsonReader {
     private void addDrink(Order order, JSONObject jsonObject) {
         String drinkName = jsonObject.getString("name");
         double price = jsonObject.getDouble("price");
-        decideDrink(order, drinkName, price);
+        String size = jsonObject.getString("size");
+        String call = jsonObject.getString("call");
+        decideDrink(order, drinkName, price, call);
     }
 
-    private void decideDrink(Order order, String call, double price) {
-        if (call.equals("Latte")) {
-            orderingLatte(order, price);
-        } else if (call.equals("Americano")) {
-            orderingAmericano(order, price);
-        } else if (call.equals("Smoothie")) {
-            orderingSmoothie(order, price);
-        } else if (call.equals("Coffee Frap")) {
-            orderingCoffeeFrap(order, price);
+    private void decideDrink(Order order, String drinkName, double price, String call) {
+        if (drinkName.equals("Latte")) {
+            orderingLatte(order, price, call);
+        } else if (drinkName.equals("Americano")) {
+            orderingAmericano(order, price, call);
+        } else if (drinkName.equals("Smoothie")) {
+            orderingSmoothie(order, price, call);
+        } else if (drinkName.equals("Coffee Frap")) {
+            orderingCoffeeFrap(order, price, call);
         }
     }
 
-    private void orderingCoffeeFrap(Order order, double price) {
+    private void orderingCoffeeFrap(Order order, double price, String call) {
         if (price >= 5) {
-            order.orderCoffeeFrap("large");
+            order.orderCoffeeFrap("large", call);
         } else if (price >= 4) {
-            order.orderCoffeeFrap("medium");
+            order.orderCoffeeFrap("medium", call);
         } else {
-            order.orderCoffeeFrap("small");
+            order.orderCoffeeFrap("small", call);
         }
     }
 
-    private void orderingSmoothie(Order order, double price) {
+    private void orderingSmoothie(Order order, double price, String call) {
         if (price >= 5.000) {
-            order.orderSmoothie("large");
+            order.orderSmoothie("large", call);
         } else if (price > 3.80) {
-            order.orderSmoothie("medium");
+            order.orderSmoothie("medium", call);
         } else {
-            order.orderSmoothie("small");
+            order.orderSmoothie("small", call);
         }
     }
 
-    private void orderingAmericano(Order order, double price) {
+    private void orderingAmericano(Order order, double price, String call) {
         if (price >= 4) {
-            order.orderAmericano("large");
+            order.orderAmericano("large", call);
         } else if (price >= 3) {
-            order.orderAmericano("medium");
+            order.orderAmericano("medium", call);
         } else {
-            order.orderAmericano("small");
+            order.orderAmericano("small", call);
         }
     }
 
-    private void orderingLatte(Order order, double price) {
+    private void orderingLatte(Order order, double price, String call) {
         if (price >= 5.00) {
-            order.orderLatte("large");
+            order.orderLatte("large", call);
         } else if (price >= 4.00) {
-            order.orderLatte("medium");
+            order.orderLatte("medium", call);
         } else {
-            order.orderLatte("small");
+            order.orderLatte("small", call);
         }
     }
 

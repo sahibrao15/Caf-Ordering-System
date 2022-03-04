@@ -17,23 +17,35 @@ public class Order {
 
     }
 
-    public void orderSmoothie(String size) {
-        Drink smoothie = new Smoothie(size);
+    public void orderSmoothie(String size, String call) {
+        Smoothie smoothie = new Smoothie(size);
+        if (!(call.equals("ignore"))) {
+            smoothie.setNameToCall(call);
+        }
         orderList.add(smoothie);
     }
 
-    public void orderLatte(String size) {
-        Drink latte = new Latte(size);
+    public void orderLatte(String size, String call) {
+        Latte latte = new Latte(size);
+        if (!(call.equals("ignore"))) {
+            latte.setNameToCall(call);
+        }
         orderList.add(latte);
     }
 
-    public void orderCoffeeFrap(String size) {
-        Drink coffeeFrap = new CoffeeFrap(size);
+    public void orderCoffeeFrap(String size, String call) {
+        CoffeeFrap coffeeFrap = new CoffeeFrap(size);
+        if (!(call.equals("ignore"))) {
+            coffeeFrap.setNameToCall(call);
+        }
         orderList.add(coffeeFrap);
     }
 
-    public void orderAmericano(String size) {
-        Drink americano = new Americano(size);
+    public void orderAmericano(String size, String call) {
+        Americano americano = new Americano(size);
+        if (!(call.equals("ignore"))) {
+            americano.setNameToCall(call);
+        }
         orderList.add(americano);
     }
 
@@ -68,7 +80,7 @@ public class Order {
         return allPrice;
     }
 
-   // @Override
+    // @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("Order", "Drinks");
