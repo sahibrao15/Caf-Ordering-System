@@ -18,22 +18,22 @@ public class Order {
     }
 
     public void orderSmoothie(String size) {
-        Smoothie smoothie = new Smoothie(size);
+        Drink smoothie = new Smoothie(size);
         orderList.add(smoothie);
     }
 
     public void orderLatte(String size) {
-        Latte latte = new Latte(size);
+        Drink latte = new Latte(size);
         orderList.add(latte);
     }
 
     public void orderCoffeeFrap(String size) {
-        CoffeeFrap coffeeFrap = new CoffeeFrap(size);
+        Drink coffeeFrap = new CoffeeFrap(size);
         orderList.add(coffeeFrap);
     }
 
     public void orderAmericano(String size) {
-        Americano americano = new Americano(size);
+        Drink americano = new Americano(size);
         orderList.add(americano);
     }
 

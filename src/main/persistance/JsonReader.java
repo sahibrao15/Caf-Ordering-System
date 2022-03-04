@@ -61,11 +61,11 @@ public class JsonReader {
     // EFFECTS: parses drink from JSON object and adds it to workroom
     private void addDrink(Order order, JSONObject jsonObject) {
         String drinkName = jsonObject.getString("name");
-        int price = jsonObject.getInt("price");
+        double price = jsonObject.getDouble("price");
         decideDrink(order, drinkName, price);
     }
 
-    private void decideDrink(Order order, String call, int price) {
+    private void decideDrink(Order order, String call, double price) {
         if (call.equals("Latte")) {
             orderingLatte(order, price);
         } else if (call.equals("Americano")) {
@@ -77,42 +77,42 @@ public class JsonReader {
         }
     }
 
-    private void orderingCoffeeFrap(Order order, int price) {
-        if (price >= 5.50) {
+    private void orderingCoffeeFrap(Order order, double price) {
+        if (price >= 5) {
             order.orderCoffeeFrap("large");
-        } else if (price >= 4.50) {
+        } else if (price >= 4) {
             order.orderCoffeeFrap("medium");
-        } else if (price >= 3.50) {
+        } else {
             order.orderCoffeeFrap("small");
         }
     }
 
-    private void orderingSmoothie(Order order, int price) {
-        if (price >= 5.10) {
+    private void orderingSmoothie(Order order, double price) {
+        if (price >= 5.000) {
             order.orderSmoothie("large");
-        } else if (price >= 4.85) {
+        } else if (price > 3.80) {
             order.orderSmoothie("medium");
-        } else if (price >= 3.45) {
+        } else {
             order.orderSmoothie("small");
         }
     }
 
-    private void orderingAmericano(Order order, int price) {
-        if (price >= 4.00) {
+    private void orderingAmericano(Order order, double price) {
+        if (price >= 4) {
             order.orderAmericano("large");
-        } else if (price >= 3.00) {
+        } else if (price >= 3) {
             order.orderAmericano("medium");
-        } else if (price >= 2.85) {
+        } else {
             order.orderAmericano("small");
         }
     }
 
-    private void orderingLatte(Order order, int price) {
+    private void orderingLatte(Order order, double price) {
         if (price >= 5.00) {
             order.orderLatte("large");
         } else if (price >= 4.00) {
             order.orderLatte("medium");
-        } else if (price >= 3.00) {
+        } else {
             order.orderLatte("small");
         }
     }

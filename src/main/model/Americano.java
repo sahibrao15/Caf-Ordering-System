@@ -75,11 +75,12 @@ public class Americano extends Espresso {
     }
 
     //getter for americanoPrice
+    @Override
     public double getPrice() {
         return americanoPrice;
     }
 
-   // @Override
+    // @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("price", americanoPrice);

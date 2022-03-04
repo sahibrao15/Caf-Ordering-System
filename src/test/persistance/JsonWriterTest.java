@@ -50,13 +50,12 @@ public class JsonWriterTest {
             writer.open();
             writer.write(order);
             writer.close();
-
             JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
             order = reader.read();
             List<Drink> drinks = order.getDrinks();
             assertEquals(3, drinks.size());
-            assertEquals(3, drinks.get(0).getPrice());
-            assertEquals(3.5, drinks.get(1).getPrice());
+            assertEquals(3.0, drinks.get(0).getPrice());
+            assertEquals(4.5, drinks.get(1).getPrice());
             assertEquals(4.85,drinks.get(2).getPrice());
 
         } catch (IOException e) {

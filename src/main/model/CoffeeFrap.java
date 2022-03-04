@@ -70,6 +70,7 @@ public class CoffeeFrap extends Blended {
     }
 
     // getter for frapPrice
+    @Override
     public double getPrice() {
         return this.frapPrice;
     }

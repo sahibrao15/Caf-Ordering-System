@@ -86,7 +86,6 @@ public class Smoothie extends Blended {
         json.put("price", smoothiePrice);
         json.put("name", "Smoothie");
 
-
         return json;
     }
 

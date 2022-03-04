@@ -42,7 +42,7 @@ public class JsonReaderTest extends JsonTest {
             List<Drink> drinks = order.getDrinks();
             assertEquals(3, drinks.size());
             checkDrink(3, drinks.get(0));
-            checkDrink(3.5, drinks.get(1));
+            checkDrink(4.5, drinks.get(1));
             checkDrink(4.85,drinks.get(2));
         } catch (IOException e) {
             fail("Couldn't read from file");

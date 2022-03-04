@@ -2,8 +2,14 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistance.JsonReader;
+import persistance.JsonWriter;
+
+import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 // test cases for the Coffee Frap Class
 public class CoffeeFrapTest {
@@ -70,6 +76,28 @@ public class CoffeeFrapTest {
         drink3.addSugar(0);
         assertEquals("The large coffee frap", drink3.getNameDrink());
     }
+    @Test
+    void testToJson() {
+        try {
+            Order order = new Order();
+            order.orderCoffeeFrap("small");
+            order.orderCoffeeFrap("medium");
+            order.orderCoffeeFrap("large");
+            JsonWriter writer = new JsonWriter("./data/testJson.json");
+            writer.open();
+            writer.write(order);
+            writer.close();
+            JsonReader reader = new JsonReader("./data/testJson.json");
+            order = reader.read();
+            List<Drink> drinks = order.getDrinks();
+            assertEquals(3, drinks.size());
+            assertEquals(3.5, drinks.get(0).getPrice());
+            assertEquals(4.5, drinks.get(1).getPrice());
+            assertEquals(5.5,drinks.get(2).getPrice());
 
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
 
 }

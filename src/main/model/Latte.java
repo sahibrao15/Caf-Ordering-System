@@ -85,8 +85,6 @@ public class Latte extends Espresso {
         JSONObject json = new JSONObject();
         json.put("price", lattePrice);
         json.put("name", "Latte");
-
-
         return json;
     }
 
