@@ -107,7 +107,8 @@ public class Order {
         return allPrice;
     }
 
-    // @Override
+    // taken from JsonSerializationDemo
+    // EFFECTS: returns a json value of the drinks under "Order"
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("Order", "Drinks");
@@ -115,7 +116,8 @@ public class Order {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // taken from JsonSerializationDemo
+    // EFFECTS: returns drinks in this order as a JSON array
     private JSONArray drinksToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Drink d : orderList) {
@@ -124,7 +126,8 @@ public class Order {
         return jsonArray;
     }
 
-    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    // taken from JsonSerializationDemo
+    // EFFECTS: returns an unmodifiable list of drinks in this workroom
     public List<Drink> getDrinks() {
         return Collections.unmodifiableList(orderList);
     }

@@ -19,6 +19,7 @@ public class OrderPage {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    // taken from JsonSerializationDemo
     // EFFECTS: initializes the orderList and sets the totalPrice to 0 before starting the chain of commands to order
     public OrderPage() throws FileNotFoundException {
         input = new Scanner(System.in);
@@ -255,38 +256,23 @@ public class OrderPage {
         order.sugar(number, sugarNumber);
     }
 
-//    // MODIFIES: this
-//    // EFFECTS: Asks customers if they would like to order another drink
-//    //          if yes, orderTypeDrink(), if not continue.
-//    public void orderAgain() {
-//        System.out.println("\nWould you like to order another drink?");
-//        Scanner orderAgain = new Scanner(System.in);
-//        String repeat = orderAgain.nextLine();
-//
-//        if (repeat.equals("yes") || repeat.equals("Yes")) {
-//            orderTypeDrink();
-//        }
-//    }
+
 
     // MODIFIES: this
     // EFFECTS: Gives the ending message with total price and adding the discount if they got it or not
-
     public void endingMessage() {
         int min = 1;
         int max = 10;
         int random = (int) Math.floor(Math.random() * (max - min + 1) + min);
+        System.out.print("\n\033[1mYour total is $");
         if (random == 2) {
-            System.out.print("\n\033[1mYour total is $");
             System.out.println(String.format("%.2f", (order.getPrice() * 0.56)) + " with tax.\033[0m");
             System.out.println("Congratulations, you have won the 50% discount off of your order! ");
         } else {
-            System.out.print("\n\033[1mYour total is $");
             System.out.println(String.format("%.2f", (order.getPrice() * 1.12)) + " with tax.\033[0m");
             System.out.println("Unfortunately you didn't win the 50% discount this time!");
         }
-
         System.out.println("We hope you have a great day and come again!");
-
         menuPage();
     }
 
@@ -301,10 +287,11 @@ public class OrderPage {
         for (Drink d : order.getList()) {
             System.out.println("-" + d.getNameDrink() + " = $" + String.format("%.2f", d.getPrice()));
         }
-
         menuPage();
     }
 
+    // MODIFIES: this
+    // EFFECTS: gives the option to remove any drinks from the order
     public void removeDrink() {
         System.out.println("\nWould you like to take out any drinks?");
         Scanner yesOrNo = new Scanner(System.in);
@@ -316,24 +303,8 @@ public class OrderPage {
             System.out.println("Drink has been removed");
             order.remove(takeOut);
         }
-
         menuPage();
     }
 
-//    // MODIFIES: this, orderList
-//    // EFFECTS: Adding drink d to the orderList
-//    public void addToList(Drink d) {
-//        orderList.add(d);
-//    }
-
-//    // MODIFIES: this
-//    // EFFECTS: adding up all the prices of the drinks in orderList and returning the totalPrice
-//    public double totalPrice() {
-//        double allPrice = 0.0;
-//        for (Drink d : orderList) {
-//            allPrice += d.getPrice();
-//        }
-//        return allPrice;
-//    }
 
 }

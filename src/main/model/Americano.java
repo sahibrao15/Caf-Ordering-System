@@ -9,24 +9,10 @@ public class Americano extends Espresso {
     private String nameToCall;
     private String size;
 
-
-
-
-    public void setNameToCall(String nameToCall) {
-        this.nameToCall = nameToCall;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
     // REQUIRES: a string size of "small", "medium" or "large"
     // EFFECTS:  based on the size, americanoPrice will be the correct price of the americano,
     //           and the nameToCall will contain the right size of the americano
+    //           and size will be set to  "small", "medium" or "large"
     public Americano(String size) {
         if (size.equals("small")) {
             setSize("small");
@@ -99,7 +85,23 @@ public class Americano extends Espresso {
         return americanoPrice;
     }
 
-    // @Override
+    // setter for name to call
+    public void setNameToCall(String nameToCall) {
+        this.nameToCall = nameToCall;
+    }
+
+    // getter for size
+    public String getSize() {
+        return size;
+    }
+
+    // setter method for size
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    // taken from JsonSerializationDemo
+    // EFFECTS: returns an americano as a JSON v
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("price", americanoPrice);

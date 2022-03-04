@@ -3,8 +3,11 @@ package persistance;
 import model.Order;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
+// taken from JsonSerializationDemo
 // Represents a writer that writes JSON representation of workroom to file
 public class JsonWriter {
     private static final int TAB = 4;
@@ -24,7 +27,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of order
     public void write(Order order) {
         JSONObject json = order.toJson();
         saveToFile(json.toString(TAB));

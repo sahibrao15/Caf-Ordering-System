@@ -11,7 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// taken from JsonSerializationDemo
 public class JsonReader {
+
 
     private String source;
 
@@ -20,7 +22,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads order from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Order read() throws IOException {
         String jsonData = readFile(source);
@@ -50,7 +52,7 @@ public class JsonReader {
     }
 
     // MODIFIES: order
-    // EFFECTS: parses drinks from JSON object and adds them to workroom
+    // EFFECTS: parses drinks from JSON object and adds them to order
     private void addDrinks(Order order, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Drink");
         for (Object json : jsonArray) {
@@ -60,7 +62,7 @@ public class JsonReader {
     }
 
     // MODIFIES: order
-    // EFFECTS: parses drink from JSON object and adds it to workroom
+    // EFFECTS: parses drink from JSON object and adds it to order
     private void addDrink(Order order, JSONObject jsonObject) {
         String drinkName = jsonObject.getString("name");
         double price = jsonObject.getDouble("price");
@@ -69,18 +71,27 @@ public class JsonReader {
         decideDrink(order, drinkName, price, call);
     }
 
+    // MODIFIES: order
+    // EFFECTS: depending on the drink, it will add that drink to order
     private void decideDrink(Order order, String drinkName, double price, String call) {
-        if (drinkName.equals("Latte")) {
-            orderingLatte(order, price, call);
-        } else if (drinkName.equals("Americano")) {
-            orderingAmericano(order, price, call);
-        } else if (drinkName.equals("Smoothie")) {
-            orderingSmoothie(order, price, call);
-        } else if (drinkName.equals("Coffee Frap")) {
-            orderingCoffeeFrap(order, price, call);
+        switch (drinkName) {
+            case "Latte":
+                orderingLatte(order, price, call);
+                break;
+            case "Americano":
+                orderingAmericano(order, price, call);
+                break;
+            case "Smoothie":
+                orderingSmoothie(order, price, call);
+                break;
+            case "Coffee Frap":
+                orderingCoffeeFrap(order, price, call);
+                break;
         }
     }
 
+    // MODIFIES: order
+    // EFFECTS: depending on the price, it will add that sized coffee frap to order, with the call
     private void orderingCoffeeFrap(Order order, double price, String call) {
         if (price >= 5) {
             order.orderCoffeeFrap("large", call);
@@ -91,6 +102,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: order
+    // EFFECTS: depending on the price, it will add that sized smoothie to order, with the call
     private void orderingSmoothie(Order order, double price, String call) {
         if (price >= 5.000) {
             order.orderSmoothie("large", call);
@@ -101,6 +114,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: order
+    // EFFECTS: depending on the price, it will add that sized americano to order, with the call
     private void orderingAmericano(Order order, double price, String call) {
         if (price >= 4) {
             order.orderAmericano("large", call);
@@ -111,6 +126,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: order
+    // EFFECTS: depending on the price, it will add that sized latte to order, with the call
     private void orderingLatte(Order order, double price, String call) {
         if (price >= 5.00) {
             order.orderLatte("large", call);

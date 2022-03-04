@@ -9,19 +9,6 @@ public class CoffeeFrap extends Blended {
     private String nameToCall;
     private String size;
 
-    public void setNameToCall(String nameToCall) {
-        this.nameToCall = nameToCall;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-
     // REQUIRES: a string size of "small", "medium" or "large"
     // EFFECTS:  based on the size, frapPrice will be the correct price of the coffee frap,
     //           and the nameToCall will contain the right size of the coffee frap
@@ -97,7 +84,23 @@ public class CoffeeFrap extends Blended {
         return nameToCall;
     }
 
-    // @Override
+    // setter for name to call
+    public void setNameToCall(String nameToCall) {
+        this.nameToCall = nameToCall;
+    }
+
+    // getter for size
+    public String getSize() {
+        return size;
+    }
+
+    // setter method for size
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    // taken from JsonSerializationDemo
+    // EFFECTS: returns an americano as a JSON v
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("price", frapPrice);

@@ -6,23 +6,9 @@ import org.json.JSONObject;
 public class Smoothie extends Blended {
 
     private double smoothiePrice;
-
-
-
-    public void setNameToCall(String nameToCall) {
-        this.nameToCall = nameToCall;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
     private String nameToCall;
     private String size;
+
 
     // REQUIRES: a string size of "small", "medium" or "large"
     // EFFECTS:  based on the size, smoothiePrice will be the correct price of the smoothie,
@@ -99,14 +85,29 @@ public class Smoothie extends Blended {
         return this.smoothiePrice;
     }
 
-    // @Override
+    // setter for name to call
+    public void setNameToCall(String nameToCall) {
+        this.nameToCall = nameToCall;
+    }
+
+    // getter for size
+    public String getSize() {
+        return size;
+    }
+
+    // setter method for size
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    // taken from JsonSerializationDemo
+    // EFFECTS: returns an americano as a JSON v
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("price", smoothiePrice);
         json.put("name", "Smoothie");
         json.put("size", getSize());
         json.put("call", getNameDrink());
-
         return json;
     }
 
