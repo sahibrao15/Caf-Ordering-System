@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Order {
 
@@ -81,5 +83,10 @@ public class Order {
             jsonArray.put(d.toJson());
         }
         return jsonArray;
+    }
+
+    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    public List<Drink> getDrinks() {
+        return Collections.unmodifiableList(orderList);
     }
 }

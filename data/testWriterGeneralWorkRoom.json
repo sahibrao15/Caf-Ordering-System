@@ -1,0 +1,17 @@
+{
+    "Order": "Drinks",
+    "Drink": [
+        {
+            "price": 3,
+            "name": "Latte"
+        },
+        {
+            "price": 4.5,
+            "name": "Coffee Frap"
+        },
+        {
+            "price": 4.85,
+            "name": "Americano"
+        }
+    ]
+}
