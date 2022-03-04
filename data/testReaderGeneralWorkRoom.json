@@ -2,22 +2,76 @@
   "Order": "Drinks",
   "Drink": [
     {
-      "call": "the small latte",
+      "call": "The small latte",
       "size": "small",
       "price": 3,
       "name": "Latte"
     },
     {
-      "call": "the medium coffee frap",
+      "call": "The large latte",
+      "size": "large",
+      "price": 5,
+      "name": "Latte"
+    },
+    {
+      "call": "The medium latte",
+      "size": "medium",
+      "price": 4,
+      "name": "Latte"
+    },
+    {
+      "call": "The small americano",
+      "size": "small",
+      "price": 2.85,
+      "name": "Americano"
+    },
+    {
+      "call": "The large americano",
+      "size": "large",
+      "price": 4.85,
+      "name": "Americano"
+    },
+    {
+      "call": "The medium americano",
+      "size": "medium",
+      "price": 3.85,
+      "name": "Americano"
+    },
+    {
+      "call": "The small coffee frap",
+      "size": "small",
+      "price": 3.5,
+      "name": "Coffee Frap"
+    },
+    {
+      "call": "The large coffee frap",
+      "size": "large",
+      "price": 5.5,
+      "name": "Coffee Frap"
+    },
+    {
+      "call": "The medium coffee frap",
       "size": "medium",
       "price": 4.5,
       "name": "Coffee Frap"
     },
     {
-      "call": "the large americano",
+      "call": "The small smoothie",
+      "size": "small",
+      "price": 3.45,
+      "name": "Smoothie"
+    },
+    {
+      "call": "The large smoothie",
       "size": "large",
-      "price": 4.85,
-      "name": "Americano"
+      "price": 5.1,
+      "name": "Smoothie"
+    },
+    {
+      "call": "The medium smoothie",
+      "size": "medium",
+      "price": 3.9,
+      "name": "Smoothie"
     }
   ]
 }

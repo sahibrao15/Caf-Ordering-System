@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+// taken from JsonSerializationDemo
 public class JsonReaderTest extends JsonTest {
 
     @Test
@@ -40,10 +41,20 @@ public class JsonReaderTest extends JsonTest {
         try {
             Order order = reader.read();
             List<Drink> drinks = order.getDrinks();
-            assertEquals(3, drinks.size());
-            checkDrink(3, "the small latte", drinks.get(0));
-            checkDrink(4.5, "the medium coffee frap", drinks.get(1));
-            checkDrink(4.85,"the large americano", drinks.get(2));
+            assertEquals(12, drinks.size());
+            checkDrink(3, "The small latte", drinks.get(0));
+            checkDrink(5, "The large latte", drinks.get(1));
+            checkDrink(4, "The medium latte", drinks.get(2));
+            checkDrink(2.85,"The small americano", drinks.get(3));
+            checkDrink(4.85,"The large americano", drinks.get(4));
+            checkDrink(3.85,"The medium americano", drinks.get(5));
+            checkDrink(3.5, "The small coffee frap", drinks.get(6));
+            checkDrink(5.5, "The large coffee frap", drinks.get(7));
+            checkDrink(4.5, "The medium coffee frap", drinks.get(8));
+            checkDrink(3.45, "The small smoothie", drinks.get(9));
+            checkDrink(5.1, "The large smoothie", drinks.get(10));
+            checkDrink(3.9, "The medium smoothie", drinks.get(11));
+
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
