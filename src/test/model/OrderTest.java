@@ -35,56 +35,71 @@ public class OrderTest {
         order1.orderSmoothie("small", "The small smoothie");
         assertEquals(1,order1.getList().size());
         assertEquals(3.45,order1.getPrice());
+        assertEquals("The small smoothie", order1.getList().get(0).getNameDrink());
 
         order1.orderSmoothie("medium", "The medium smoothie");
         assertEquals(2,order1.getList().size());
         assertEquals(3.45+3.90,order1.getPrice());
+        assertEquals("The medium smoothie", order1.getList().get(1).getNameDrink());
 
         order1.orderSmoothie("large", "The large smoothie");
         assertEquals(3,order1.getList().size());
         assertEquals(3.45+3.90+5.10,order1.getPrice());
+        assertEquals("The large smoothie", order1.getList().get(2).getNameDrink());
     }
     @Test
     void testOrderLatte(){
         order1.orderLatte("small", "The small latte");
         assertEquals(1,order1.getList().size());
         assertEquals(3.00,order1.getPrice());
+        assertEquals("The small latte", order1.getList().get(0).getNameDrink());
 
         order1.orderLatte("medium", "The medium latte");
         assertEquals(2,order1.getList().size());
         assertEquals(7.00,order1.getPrice());
+        assertEquals("The medium latte", order1.getList().get(1).getNameDrink());
 
         order1.orderLatte("large", "The large latte");
         assertEquals(3,order1.getList().size());
         assertEquals(12.0,order1.getPrice());
+        assertEquals("The large latte", order1.getList().get(2).getNameDrink());
     }
     @Test
     void testOrderAmericano(){
         order1.orderAmericano("small", "The small americano");
         assertEquals(1,order1.getList().size());
         assertEquals(2.85,order1.getPrice());
+        assertEquals("The small americano", order1.getList().get(0).getNameDrink());
 
         order1.orderAmericano("medium", "The medium americano");
         assertEquals(2,order1.getList().size());
         assertEquals(2.85+3.85,order1.getPrice());
+        assertEquals("The medium americano", order1.getList().get(1).getNameDrink());
 
         order1.orderAmericano("large", "The large americano");
         assertEquals(3,order1.getList().size());
         assertEquals(2.85+3.85+4.85,order1.getPrice());
+        assertEquals("The large americano", order1.getList().get(2).getNameDrink());
     }
     @Test
     void testOrderCoffeeFrap() {
         order1.orderCoffeeFrap("small", "The small coffee frap");
         assertEquals(1,order1.getList().size());
         assertEquals(3.5,order1.getPrice());
+        assertEquals("The small coffee frap", order1.getList().get(0).getNameDrink());
+
 
         order1.orderCoffeeFrap("medium", "The medium coffee frap");
         assertEquals(2,order1.getList().size());
         assertEquals(8.0,order1.getPrice());
+        assertEquals("The medium coffee frap", order1.getList().get(1).getNameDrink());
+
 
         order1.orderCoffeeFrap("large", "The large coffee frap");
         assertEquals(3,order1.getList().size());
         assertEquals(13.5,order1.getPrice());
+        assertEquals("The large coffee frap", order1.getList().get(2).getNameDrink());
+
     }
 
     @Test

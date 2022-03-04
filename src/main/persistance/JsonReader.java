@@ -42,12 +42,11 @@ public class JsonReader {
     // EFFECTS: parses order from JSON object and returns it
     private Order parseOrder(JSONObject jsonObject) {
         String name = jsonObject.getString("Order");
-        if (name.equals("Drinks")) {
-            Order order = new Order();
-            addDrinks(order, jsonObject);
-            return order;
-        }
-        return null;
+
+        Order order = new Order();
+        addDrinks(order, jsonObject);
+        return order;
+
     }
 
     // MODIFIES: order

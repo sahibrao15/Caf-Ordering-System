@@ -1,47 +1,9 @@
 {
     "Order": "Drinks",
-    "Drink": [
-        {
-            "call": "The small latte",
-            "size": "small",
-            "price": 3,
-            "name": "Latte"
-        },
-        {
-            "call": "The large latte",
-            "size": "large",
-            "price": 5,
-            "name": "Latte"
-        },
-        {
-            "call": "The large americano",
-            "size": "large",
-            "price": 4.85,
-            "name": "Americano"
-        },
-        {
-            "call": "The large americano",
-            "size": "large",
-            "price": 4.85,
-            "name": "Americano"
-        },
-        {
-            "call": "The medium smoothie",
-            "size": "medium",
-            "price": 3.9,
-            "name": "Smoothie"
-        },
-        {
-            "call": "The medium latte",
-            "size": "medium",
-            "price": 4,
-            "name": "Latte"
-        },
-        {
-            "call": "The large coffee frap",
-            "size": "large",
-            "price": 5.5,
-            "name": "Coffee Frap"
-        }
-    ]
+    "Drink": [{
+        "call": "The small latte without whip cream, without cinnamon powder and without caramel drizzle and 4 packets of sugar",
+        "size": "small",
+        "price": 3,
+        "name": "Latte"
+    }]
 }
