@@ -46,6 +46,11 @@ public class OrderTest {
         assertEquals(3,order1.getList().size());
         assertEquals(3.45+3.90+5.10,order1.getPrice());
         assertEquals("The large smoothie", order1.getList().get(2).getNameDrink());
+
+        order1.orderSmoothie("large", "ignore");
+        assertEquals(4,order1.getList().size());
+        assertEquals(3.45+3.90+5.10*2,order1.getPrice());
+        assertEquals("The large smoothie", order1.getList().get(3).getNameDrink());
     }
     @Test
     void testOrderLatte(){
@@ -63,6 +68,11 @@ public class OrderTest {
         assertEquals(3,order1.getList().size());
         assertEquals(12.0,order1.getPrice());
         assertEquals("The large latte", order1.getList().get(2).getNameDrink());
+
+        order1.orderLatte("large", "ignore");
+        assertEquals(4,order1.getList().size());
+        assertEquals(17.0,order1.getPrice());
+        assertEquals("The large latte", order1.getList().get(3).getNameDrink());
     }
     @Test
     void testOrderAmericano(){
@@ -80,6 +90,11 @@ public class OrderTest {
         assertEquals(3,order1.getList().size());
         assertEquals(2.85+3.85+4.85,order1.getPrice());
         assertEquals("The large americano", order1.getList().get(2).getNameDrink());
+
+        order1.orderAmericano("large", "ignore");
+        assertEquals(4,order1.getList().size());
+        assertEquals(2.85+3.85+4.85*2,order1.getPrice());
+        assertEquals("The large americano", order1.getList().get(3).getNameDrink());
     }
     @Test
     void testOrderCoffeeFrap() {
@@ -99,6 +114,11 @@ public class OrderTest {
         assertEquals(3,order1.getList().size());
         assertEquals(13.5,order1.getPrice());
         assertEquals("The large coffee frap", order1.getList().get(2).getNameDrink());
+
+        order1.orderCoffeeFrap("large", "ignore");
+        assertEquals(4,order1.getList().size());
+        assertEquals(19,order1.getPrice());
+        assertEquals("The large coffee frap", order1.getList().get(3).getNameDrink());
 
     }
 
@@ -157,6 +177,42 @@ public class OrderTest {
         assertEquals(3.00,order1.getList().get(0).getPrice());
         assertEquals(5.00,order1.getList().get(1).getPrice());
 
+    }
+
+    @Test
+    void testGetPrice(){
+        assertEquals(0,order1.getPrice());
+
+        order1.orderLatte("small", "The small latte");
+
+        assertEquals(3.0, order1.getPrice());
+        order1.orderLatte("medium", "The medium latte");
+        order1.orderLatte("large", "The large latte");
+
+        assertEquals(12.0,order1.getPrice());
+    }
+    @Test
+    void testDrinksToJson() {
+        try {
+            Order order = new Order();
+            order.orderCoffeeFrap("small", "The small coffee frap");
+            order.orderCoffeeFrap("medium", "The medium coffee frap");
+            order.orderCoffeeFrap("large", "The large coffee frap");
+            JsonWriter writer = new JsonWriter("./data/testJson.json");
+            writer.open();
+            writer.write(order);
+            writer.close();
+            JsonReader reader = new JsonReader("./data/testJson.json");
+            order = reader.read();
+            List<Drink> drinks = order.getDrinks();
+            assertEquals(3, drinks.size());
+            assertEquals(3.5, drinks.get(0).getPrice());
+            assertEquals(4.5, drinks.get(1).getPrice());
+            assertEquals(5.5,drinks.get(2).getPrice());
+
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
     }
 
 
