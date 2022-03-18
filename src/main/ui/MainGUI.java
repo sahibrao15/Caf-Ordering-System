@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// cited from AlarmSystem - AlarmControllerUI.java
 public class MainGUI extends JFrame {
 
     private static final int WIDTH = 500;
@@ -20,18 +21,18 @@ public class MainGUI extends JFrame {
     private Order order;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-
-    private JDesktopPane desktop;
     private JInternalFrame controlPanel;
 
-
+    // constructor for MainHUI
+    // MODIFIES: this
+    // EFFECTS: initialises all the necessary JFrame and JSON objects, a new order and setting up a button panel
     public MainGUI() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
         order = new Order();
 
-        desktop = new JDesktopPane();
+        JDesktopPane desktop = new JDesktopPane();
 
         controlPanel = new JInternalFrame("Coffee Order", false, false, false, false);
         controlPanel.setLayout(new BorderLayout());
@@ -58,29 +59,32 @@ public class MainGUI extends JFrame {
         new MainGUI();
     }
 
+
+    // MODIFIES: this
+    // EFFECTS: a helper function to aid in setting up a button for each function
     private void addButtonMenu() {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 2));
         buttonPanel.add(new JButton(new AddCoffee()));
         buttonPanel.add(new JButton(new Summary()));
-//        buttonPanel.add(new JButton(new CustomizeCoffee()));
+        buttonPanel.add(new JButton(new CustomizeCoffee()));
         buttonPanel.add(new JButton(new SaveOrder()));
         buttonPanel.add(new JButton(new RemoveCoffee()));
         buttonPanel.add(new JButton(new LoadOrder()));
 
-
         controlPanel.add(buttonPanel, BorderLayout.WEST);
     }
 
-    /**
-     * Helper to centre main application window on desktop
-     */
+    // MODIFIES: this
+    // EFFECTS: allows to centre the main page on the desktop
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
         int height = Toolkit.getDefaultToolkit().getScreenSize().height;
         setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a coffee based on user's input
     private class AddCoffee extends AbstractAction {
 
         AddCoffee() {
@@ -116,6 +120,8 @@ public class MainGUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes a coffee based on user's input
     private class RemoveCoffee extends AbstractAction {
 
         RemoveCoffee() {
@@ -133,6 +139,7 @@ public class MainGUI extends JFrame {
         }
     }
 
+    // EFFECTS: releases a summary of all the drinks so far and the prices
     private class Summary extends AbstractAction {
 
         Summary() {
@@ -151,6 +158,7 @@ public class MainGUI extends JFrame {
         }
     }
 
+    // EFFECTS: loads order from file order.JSON
     public class LoadOrder extends AbstractAction {
 
         LoadOrder() {
@@ -172,6 +180,7 @@ public class MainGUI extends JFrame {
         }
     }
 
+    // EFFECTS: saves order from file order.JSON
     public class SaveOrder extends AbstractAction {
 
         SaveOrder() {
@@ -195,4 +204,19 @@ public class MainGUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: gives the options in customizing a drink
+    private class CustomizeCoffee extends AbstractAction {
+
+        CustomizeCoffee() {
+            super("Customize Coffee");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            // no idea yet
+            JOptionPane.showMessageDialog(null, "yeet", "Coffee Summary",
+                    JOptionPane.PLAIN_MESSAGE);
+        }
+    }
 }

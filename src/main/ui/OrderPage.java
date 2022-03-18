@@ -12,9 +12,8 @@ import java.util.Scanner;
 // a OrderPage class to keep track of the order, having an Arraylist of Drinks at all time
 public class OrderPage {
 
-    private Order order;
-
     private static final String JSON_STORE = "./data/order.json";
+    private Order order;
     private Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -255,7 +254,6 @@ public class OrderPage {
         int sugarNumber = sugar.nextInt();
         order.sugar(number, sugarNumber);
     }
-
 
 
     // MODIFIES: this
