@@ -1,15 +1,18 @@
 package ui;
 
+import model.Americano;
 import model.Drink;
 import model.Order;
 import persistance.JsonReader;
 import persistance.JsonWriter;
 
 import javax.swing.*;
+import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 // cited from AlarmSystem - AlarmControllerUI.java
 public class MainGUI extends JFrame {
@@ -50,6 +53,8 @@ public class MainGUI extends JFrame {
         controlPanel.setVisible(true);
         desktop.add(controlPanel);
 
+
+        validate();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         centreOnScreen();
         setVisible(true);
@@ -96,8 +101,12 @@ public class MainGUI extends JFrame {
             String coffeeOrdered = JOptionPane.showInputDialog(null,
                     "Enter Coffee followed by Size (e.g. Latte Medium)",
                     "Order Coffee",
-                    JOptionPane.QUESTION_MESSAGE);
+                    JOptionPane.PLAIN_MESSAGE);
 
+            orderingCoffee(coffeeOrdered);
+        }
+
+        private void orderingCoffee(String coffeeOrdered) {
             int spaceIndex = coffeeOrdered.indexOf(" ");
             switch (coffeeOrdered.substring(0, spaceIndex)) {
                 case "latte":
@@ -133,7 +142,7 @@ public class MainGUI extends JFrame {
             String removeCoffee = JOptionPane.showInputDialog(null,
                     "Pick Numbered Coffee to Remove",
                     "Remove Coffee",
-                    JOptionPane.QUESTION_MESSAGE);
+                    JOptionPane.PLAIN_MESSAGE);
             int coffeeNumber = Integer.parseInt(removeCoffee);
             order.remove(coffeeNumber);
         }
@@ -155,6 +164,15 @@ public class MainGUI extends JFrame {
             }
             JOptionPane.showMessageDialog(null, message, "Coffee Summary",
                     JOptionPane.PLAIN_MESSAGE);
+
+            JLabel label = new JLabel();
+            label.setIcon(new ImageIcon("/data/coffee1.png"));
+            label.setBounds(100, 100, 100, 100);
+            JPanel panel = new JPanel();
+            panel.add(label);
+            panel.setVisible(true);
+            add(panel);
+
         }
     }
 
@@ -206,7 +224,7 @@ public class MainGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: gives the options in customizing a drink
-    private class CustomizeCoffee extends AbstractAction {
+    public class CustomizeCoffee extends AbstractAction {
 
         CustomizeCoffee() {
             super("Customize Coffee");
@@ -214,9 +232,43 @@ public class MainGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            // no idea yet
-            JOptionPane.showMessageDialog(null, "yeet", "Coffee Summary",
+            String message = "Enter number of drink customized, followed by \n";
+            message += "milk, sugar, whip cream, caramel drizzle, cinnamon powder \n";
+            message += "ex. 1,oat,0,yes,yes,no";
+            String customizeCoffee0 = JOptionPane.showInputDialog(null,
+                    message,
+                    "Remove Coffee",
                     JOptionPane.PLAIN_MESSAGE);
+
+            customizeDrink(customizeCoffee0);
+
+        }
+
+        private void customizeDrink(String customizeCoffee0) {
+            int index0 = customizeCoffee0.indexOf(",");
+            String numDrink = customizeCoffee0.substring(0, index0);
+            String customizeCoffee1 = customizeCoffee0.substring(index0 + 1);
+            int index1 = customizeCoffee1.indexOf(",");
+            String milk = customizeCoffee1.substring(0, index1);
+            String customizeCoffee2 = customizeCoffee1.substring(index1 + 1);
+            int index2 = customizeCoffee2.indexOf(",");
+            String sugar = customizeCoffee2.substring(0, index2);
+            String customizeCoffee3 = customizeCoffee2.substring(index2 + 1);
+            int index3 = customizeCoffee3.indexOf(",");
+            String whip = customizeCoffee3.substring(0, index3);
+            String customizeCoffee4 = customizeCoffee3.substring(index3 + 1);
+            int index4 = customizeCoffee4.indexOf(",");
+            String caramel = customizeCoffee4.substring(0, index4);
+            String customizeCoffee5 = customizeCoffee4.substring(index4 + 1);
+            int index5 = customizeCoffee5.indexOf(",");
+            String cinnamon = customizeCoffee5;
+
+            order.getList().get(Integer.parseInt(numDrink) - 1).addMilk(milk);
+            order.getList().get(Integer.parseInt(numDrink) - 1).addSugar(Integer.parseInt(sugar));
+            order.getList().get(Integer.parseInt(numDrink) - 1).changeToppings(whip, caramel, cinnamon);
+
         }
     }
+
+    // need a class to make pictures of coffee appear
 }

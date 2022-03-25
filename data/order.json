@@ -1,9 +1,9 @@
 {
     "Order": "Drinks",
     "Drink": [{
-        "call": "The small latte",
-        "size": "small",
-        "price": 3,
+        "call": "The medium latte, made with oat milk with whip cream, with cinnamon powder and without caramel drizzle",
+        "size": "medium",
+        "price": 4.499999999999999,
         "name": "Latte"
     }]
 }
