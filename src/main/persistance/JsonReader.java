@@ -40,7 +40,7 @@ public class JsonReader {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
-        EventLog.getInstance().logEvent(new Event("Read order.JSON"));
+        EventLog.getInstance().logEvent(new Event("Retrieved order from order.JSON"));
         return contentBuilder.toString();
     }
 

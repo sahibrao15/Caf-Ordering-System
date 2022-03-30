@@ -35,5 +35,40 @@ their full effort into providing the best quality of food and beverages.
 
 - As a user, I would like to be able to load up my coffee order and continue from where I left off in the transaction 
 
+## Phase 4: Task 2
+
+Wed Mar 30 14:44:14 PDT 2022
+
+Ordered a medium latte
+
+Wed Mar 30 14:44:20 PDT 2022
+
+Ordered a small americano
+
+Wed Mar 30 14:44:22 PDT 2022
+
+Ordered a large smoothie
+
+Wed Mar 30 14:44:27 PDT 2022
+
+Ordered a large latte
+
+Wed Mar 30 14:44:29 PDT 2022
+
+Removed the The large latte
+
+Wed Mar 30 14:44:38 PDT 2022
+
+Added oat milk to the medium latte
+
+Wed Mar 30 14:44:46 PDT 2022
+
+Added soy milk to the small americano
+
+Wed Mar 30 14:44:48 PDT 2022
+
+Put order onto file order.JSON
+
+
 
 

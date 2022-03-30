@@ -59,6 +59,8 @@ public class CoffeeFrap extends Blended {
     //           adjustments to nameToCall
     public void addMilk(String milk) {
         nameToCall += ", using " + milk + " milk";
+        EventLog.getInstance().logEvent(new Event("Added " + milk + " milk to the " + size + " coffee frap"));
+
     }
 
     // REQUIRES: sugar >= 0

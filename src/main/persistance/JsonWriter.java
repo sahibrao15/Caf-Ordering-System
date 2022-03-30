@@ -33,7 +33,7 @@ public class JsonWriter {
     public void write(Order order) {
         JSONObject json = order.toJson();
         saveToFile(json.toString(TAB));
-        EventLog.getInstance().logEvent(new Event("Edited order.JSON"));
+        EventLog.getInstance().logEvent(new Event("Put order onto file order.JSON"));
     }
 
     // MODIFIES: this

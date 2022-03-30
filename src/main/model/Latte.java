@@ -61,6 +61,8 @@ public class Latte extends Espresso {
     public void addMilk(String milk) {
         lattePrice += 0.3;
         nameToCall += ", made with " + milk + " milk";
+        EventLog.getInstance().logEvent(new Event("Added " + milk + " milk to the " + size + " latte"));
+
     }
 
     // REQUIRES: sugar >= 0

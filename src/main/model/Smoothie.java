@@ -61,6 +61,8 @@ public class Smoothie extends Blended {
     //           adjustments to nameToCall
     public void addMilk(String milk) {
         nameToCall += ", with a hint of " + milk + " milk";
+        EventLog.getInstance().logEvent(new Event("Added " + milk + " milk to the " + size + " smoothie"));
+
     }
 
     // REQUIRES: sugar >= 0
