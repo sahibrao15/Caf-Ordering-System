@@ -60,6 +60,7 @@ public class Americano extends Espresso {
     //           adjustments to nameToCall
     public void addMilk(String milk) {
         nameToCall += ", with " + milk + " milk on top";
+        EventLog.getInstance().logEvent(new Event("Added " + milk + " milk to the " + size + " americano"));
     }
 
     // REQUIRES: sugar >= 0

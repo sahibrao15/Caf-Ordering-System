@@ -1,9 +1,17 @@
 {
     "Order": "Drinks",
-    "Drink": [{
-        "call": "The medium latte, made with oat milk with whip cream, with cinnamon powder and without caramel drizzle",
-        "size": "medium",
-        "price": 4.499999999999999,
-        "name": "Latte"
-    }]
+    "Drink": [
+        {
+            "call": "The medium latte, made with oat milk with whip cream, with cinnamon powder and without caramel drizzle",
+            "size": "medium",
+            "price": 4.499999999999999,
+            "name": "Latte"
+        },
+        {
+            "call": "The small americano",
+            "size": "small",
+            "price": 2.85,
+            "name": "Americano"
+        }
+    ]
 }

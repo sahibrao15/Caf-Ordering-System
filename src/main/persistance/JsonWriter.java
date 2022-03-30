@@ -1,5 +1,7 @@
 package persistance;
 
+import model.Event;
+import model.EventLog;
 import model.Order;
 import org.json.JSONObject;
 
@@ -31,6 +33,7 @@ public class JsonWriter {
     public void write(Order order) {
         JSONObject json = order.toJson();
         saveToFile(json.toString(TAB));
+        EventLog.getInstance().logEvent(new Event("Edited order.JSON"));
     }
 
     // MODIFIES: this

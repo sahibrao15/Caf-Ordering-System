@@ -1,6 +1,8 @@
 package persistance;
 
 
+import model.Event;
+import model.EventLog;
 import model.Order;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,6 +40,7 @@ public class JsonReader {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
+        EventLog.getInstance().logEvent(new Event("Read order.JSON"));
         return contentBuilder.toString();
     }
 

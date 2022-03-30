@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
@@ -55,7 +56,11 @@ public class MainGUI extends JFrame {
         desktop.add(controlPanel);
 
         validate();
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+
         centreOnScreen();
         setVisible(true);
     }
@@ -65,28 +70,25 @@ public class MainGUI extends JFrame {
 
         new MainGUI();
 
-
-        printIt();
-
-
     }
 
-    private static void printIt() {
-        System.out.println(EventLog.getInstance().toString());
-    }
+    public void windowClosing(WindowEvent e) {
 
+        // WindowConstants.EXIT_ON_CLOSE;
+    }
 
     // MODIFIES: this
     // EFFECTS: a helper function to aid in setting up a button for each function
     private void addButtonMenu() {
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(3, 2));
+        buttonPanel.setLayout(new GridLayout(4, 2));
         buttonPanel.add(new JButton(new AddCoffee()));
         buttonPanel.add(new JButton(new Summary()));
         buttonPanel.add(new JButton(new CustomizeCoffee()));
         buttonPanel.add(new JButton(new SaveOrder()));
         buttonPanel.add(new JButton(new RemoveCoffee()));
         buttonPanel.add(new JButton(new LoadOrder()));
+        buttonPanel.add(new JButton(new ExitCafe()));
 
         controlPanel.add(buttonPanel, BorderLayout.WEST);
     }
@@ -312,6 +314,26 @@ public class MainGUI extends JFrame {
             order.getList().get(Integer.parseInt(numDrink) - 1).addSugar(Integer.parseInt(sugar));
             order.getList().get(Integer.parseInt(numDrink) - 1).changeToppings(whip, caramel, cinnamon);
 
+        }
+    }
+
+    // EFFECTS: exits the café and outputs the eventlog
+    public class ExitCafe extends AbstractAction {
+
+        // EFFECTS: constructor for SaveOrder()
+        ExitCafe() {
+            super("Leaving Cafe");
+
+        }
+
+
+        // EFFECTS: exits the café and outputs the eventlog
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            for (Event e : EventLog.getInstance()) {
+                System.out.println(e.toString());
+            }
+            System.exit(0);
         }
     }
 

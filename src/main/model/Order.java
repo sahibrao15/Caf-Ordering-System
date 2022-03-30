@@ -27,6 +27,7 @@ public class Order {
             smoothie.setNameToCall(call);
         }
         orderList.add(smoothie);
+        EventLog.getInstance().logEvent(new Event("Ordered a " + size + " smoothie"));
     }
 
     // REQUIRES: a size of "small", "medium" or "large"
@@ -38,6 +39,7 @@ public class Order {
             latte.setNameToCall(call);
         }
         orderList.add(latte);
+        EventLog.getInstance().logEvent(new Event("Ordered a " + size + " latte"));
     }
 
     // REQUIRES: a size of "small", "medium" or "large"
@@ -49,6 +51,7 @@ public class Order {
             coffeeFrap.setNameToCall(call);
         }
         orderList.add(coffeeFrap);
+        EventLog.getInstance().logEvent(new Event("Ordered a " + size + " coffee frap"));
     }
 
     // REQUIRES: a size of "small", "medium" or "large"
@@ -60,7 +63,7 @@ public class Order {
             americano.setNameToCall(call);
         }
         orderList.add(americano);
-        EventLog.getInstance().logEvent(new Event("Ordered an americano"));
+        EventLog.getInstance().logEvent(new Event("Ordered a " + size + " americano"));
     }
 
     // REQUIRES: drink number within orderList.size() and a "yes" or "no" for all the other parameters
@@ -69,6 +72,17 @@ public class Order {
     public void toppings(int drinkNumber, String whip, String cinnamon, String drizzle) {
         Drink d = orderList.get(drinkNumber - 1);
         d.changeToppings(whip, cinnamon, drizzle);
+        String message = "Topped up drink number " + drinkNumber + " with ";
+        if (whip.equals("yes") || whip.equals("Yes")) {
+            message += "whip cream";
+        }
+        if (cinnamon.equals("yes") || cinnamon.equals("Yes")) {
+            message += ", cinnamon powder";
+        }
+        if (drizzle.equals("yes") || drizzle.equals("Yes")) {
+            message += ", whip cream";
+        }
+        EventLog.getInstance().logEvent(new Event(message));
     }
 
     // REQUIRES: drink number within orderList.size() and a type of milk in milk parameter
@@ -77,6 +91,7 @@ public class Order {
     public void milk(int drinkNumber, String milk) {
         Drink d = orderList.get(drinkNumber - 1);
         d.addMilk(milk);
+        EventLog.getInstance().logEvent(new Event("Added " + milk + " milk to drink number" + drinkNumber));
     }
 
     // REQUIRES: drink number within orderList.size() and sugarNo >= 0
@@ -85,13 +100,17 @@ public class Order {
     public void sugar(int drinkNumber, int sugarNo) {
         Drink d = orderList.get(drinkNumber - 1);
         d.addSugar(sugarNo);
+        EventLog.getInstance().logEvent(new Event("Added " + sugarNo + " sugars to drink number" + drinkNumber));
     }
 
     // REQUIRES: drink number within orderList.size()
     // MODIFIES: this
     // EFFECTS: removes the index of drinkNumber - 1 from orderList
     public void remove(int drinkNumber) {
+        String message = "Removed the " + orderList.get(drinkNumber - 1).getNameDrink();
+        EventLog.getInstance().logEvent(new Event(message));
         orderList.remove(drinkNumber - 1);
+
     }
 
     // getter method for orderList
