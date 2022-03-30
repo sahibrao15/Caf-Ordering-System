@@ -60,6 +60,7 @@ public class Order {
             americano.setNameToCall(call);
         }
         orderList.add(americano);
+        EventLog.getInstance().logEvent(new Event("Ordered an americano"));
     }
 
     // REQUIRES: drink number within orderList.size() and a "yes" or "no" for all the other parameters

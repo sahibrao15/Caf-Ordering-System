@@ -1,6 +1,8 @@
 package ui;
 
 import model.Drink;
+import model.Event;
+import model.EventLog;
 import model.Order;
 import persistance.JsonReader;
 import persistance.JsonWriter;
@@ -11,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Iterator;
 
 // cited from AlarmSystem - AlarmControllerUI.java
 public class MainGUI extends JFrame {
@@ -59,8 +62,19 @@ public class MainGUI extends JFrame {
 
     // EFFECTS: starts up the mainGUI
     public static void main(String[] args) {
+
         new MainGUI();
+
+
+        printIt();
+
+
     }
+
+    private static void printIt() {
+        System.out.println(EventLog.getInstance().toString());
+    }
+
 
     // MODIFIES: this
     // EFFECTS: a helper function to aid in setting up a button for each function
