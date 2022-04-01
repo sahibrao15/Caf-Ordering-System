@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Iterator;
 
 // cited from AlarmSystem - AlarmControllerUI.java
 public class MainGUI extends JFrame {

@@ -1,23 +1,9 @@
 {
     "Order": "Drinks",
-    "Drink": [
-        {
-            "call": "The medium latte, made with oat milk with whip cream, with cinnamon powder and without caramel drizzle",
-            "size": "medium",
-            "price": 4.499999999999999,
-            "name": "Latte"
-        },
-        {
-            "call": "The small americano, with soy milk on top with whip cream, with cinnamon powder and without caramel drizzle",
-            "size": "small",
-            "price": 3.0500000000000003,
-            "name": "Americano"
-        },
-        {
-            "call": "The large smoothie",
-            "size": "large",
-            "price": 5.1,
-            "name": "Smoothie"
-        }
-    ]
+    "Drink": [{
+        "call": "The medium latte, made with oat milk and 6 packets of sugar with whip cream, without cinnamon powder and with caramel drizzle",
+        "size": "medium",
+        "price": 4.499999999999999,
+        "name": "Latte"
+    }]
 }
